@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="Iir5VVtiBE69vnjrCmBejA" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="amazon.de/Training-Football-Premium-Leather-Weather/dp/B0D8SYFRT4/ref=sr_1_1_sspa" CVScreenId="66f53c68-18a6-4005-90d3-e85fdeb20aa5" CvElementArea="1461, 702, 217, 34" CvTextArea="1528, 712, 84, 13" CvTextArgument="Add to basket" CvType="Button" DesignTimeRectangle="1464, 705, 212, 29" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;webctrl id='add-to-cart-button' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl id='add-to-cart-button' tag='INPUT' type='submit' class='a-button-input' aaname='Add to Shopping Basket' check:text='Add to basket' /&gt;" Guid="b2884f11-ce4b-479c-b3ad-0443dda621cc" ScopeSelectorArgument="&lt;html app='chrome.exe' htmlwindowname='https://m.media-amazon.com/images/I/11EIQ5IGqaL._RC%7C01ZTHTZObnL.css,51FIeTurRAL.css,31fFxDf00KL.css,11j2+ObrspL.css,01qDClimA1L.css,01pOTCa2wPL.css,413Vvv3GONL.css,11TIuySqr6L.css,01Rw4F+QU6L.css,11JJsNcqOIL.css,01J3raiFJrL.css,01IdKcBuAdL.css,014QJx7nWq*' title='U&amp;amp;C Planet Training Football Size 5 Youth Football Balls Premium PVC Leather Ball for Training &amp;amp; Games in All Weather : Amazon.de: Toys' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V4" Visibility="Interactive">
+      <imageRef attrName="InformativeScreenshot" originalValue="19f1c33ae8e7f3ed282cf16ec7649ad7.png" xmlns="">0kJ1x1p6dsk2WlsjJAFUJfA</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">Click</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

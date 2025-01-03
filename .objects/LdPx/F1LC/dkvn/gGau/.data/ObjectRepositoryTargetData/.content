@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="6V0yqg216kOVIo_3ITYWKg" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="amazon.de" CVScreenId="5ebfaa5f-d038-44be-b8ba-c0c362425c0f" CvElementArea="349, 137, 1078, 42" CvType="InputBox" DesignTimeRectangle="356, 140, 1059, 38" DesignTimeScaleFactor="1" ElementType="InputBox" FuzzySelectorArgument="&lt;webctrl id='twotabsearchtextbox' tag='INPUT' type='text' class='nav-input nav-progressive-attribute' placeholder='Search Amazon.de' aaname='Search Amazon.de' /&gt;" Guid="bd4b6537-5ee5-47db-b59f-fd5011574570" IsResponsive="True" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Amazon.de: Low Prices in Electronics, Books, Sports Equipment &amp;amp; more' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive">
+      <TargetAnchorable.Anchors>
+        <scg:List x:TypeArguments="ITarget" Capacity="4">
+          <Target CVScreenId="5ebfaa5f-d038-44be-b8ba-c0c362425c0f" CvTextArea="314, 153, 17, 12" CvTextArgument="All" CvType="Text" DesignTimeRectangle="315, 143, 19, 33" ElementType="Text" FuzzySelectorArgument="&lt;webctrl id='nav-search-label-id' tag='SPAN' type='' class='nav-search-label nav-progressive-content' aaname='All' check:innerText='All' /&gt;" Guid="93ec3225-0028-454f-b074-42fa3b883ef8" SearchSteps="FuzzySelector, CV" />
+        </scg:List>
+      </TargetAnchorable.Anchors>
+      <imageRef attrName="InformativeScreenshot" originalValue="c44d55d2f7cab3557aa783c51695dcaf.png" xmlns="">0MZEtL4eiYk2pXki_Rw4_QA</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">TypeInto</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

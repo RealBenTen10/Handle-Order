@@ -1,0 +1,14 @@
+﻿{
+  "Name": "Add to basket(1)",
+  "Type": "Element",
+  "TaxonomyType": "Button",
+  "Id": "Ud5fGKg7Kk-zUYFfGxGLUw",
+  "Reference": "itrJpdWr7Ee3YZjVAIn54A/Ud5fGKg7Kk-zUYFfGxGLUw",
+  "ParentRef": "itrJpdWr7Ee3YZjVAIn54A/dkvnMsLGak6kIa4jJ61TNw",
+  "Created": "2025-01-01T18:23:28.5513589Z",
+  "Updated": "2025-01-01T18:23:28.5513589Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=24.10.8.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=24.11.1.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

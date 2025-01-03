@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="pxiZkrk2A0Gvxellrw4Szg" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="inloop.github.io/sqlite-viewer" DesignTimeRectangle="1399, 689, 212, 29" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;webctrl id='add-to-cart-button' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl id='add-to-cart-button' tag='INPUT' type='submit' class='a-button-input' aaname='Add to Shopping Basket' check:text='Add to basket' /&gt;" Guid="a0d76717-7525-49a5-98a2-b79588626e2e" ScopeSelectorArgument="&lt;html app='chrome.exe' htmlwindowname='https://m.media-amazon.com/images/I/11EIQ5IGqaL._RC%7C01ZTHTZObnL.css,51FIeTurRAL.css,31fFxDf00KL.css,11j2+ObrspL.css,01qDClimA1L.css,01pOTCa2wPL.css,413Vvv3GONL.css,11TIuySqr6L.css,01Rw4F+QU6L.css,11JJsNcqOIL.css,01J3raiFJrL.css,01IdKcBuAdL.css,014QJx7nWq*' title='Fantecia Football Size 5 for Unisex Adults Children Indoor Outdoor Football for Training Leather Football with Pump : Amazon.de: Sports &amp;amp; Outdoors' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V4" Visibility="Interactive">
+      <imageRef attrName="InformativeScreenshot" originalValue="7ddecf7b5605a5f0333018b2696caf0d.png" xmlns="">0rRce0R_p9kiA5KZFSRWKWg</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">Click</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>
