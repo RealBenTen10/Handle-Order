@@ -181,6 +181,8 @@
       <x:String>UiPath.GSuite.Activities.Drive.Triggers</x:String>
       <x:String>UiPath.GSuite.Activities.Drive</x:String>
       <x:String>UiPath.GSuite</x:String>
+      <x:String>UiPath.Activities.System.Jobs</x:String>
+      <x:String>UiPath.Core.Activities.Orchestrator</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -319,7 +321,7 @@
       <x:Boolean x:Key="ShouldCollapseAll">False</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="1285,7868" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="989,7991" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sds:SQLiteConnection" Name="database" />
       <Variable x:TypeArguments="sd:DataTable" Name="itemTable" />
@@ -395,13 +397,13 @@
         <InArgument x:TypeArguments="s:String[][]">[{({"Pen", "100"})}]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:ForEach x:TypeArguments="s:String[]" CurrentIndex="{x:Null}" DisplayName="For Each item in customer Order" sap:VirtualizedContainerService.HintSize="750,7512" sap2010:WorkflowViewState.IdRef="ForEach`1_7" Values="[customerOrder]">
+    <ui:ForEach x:TypeArguments="s:String[]" CurrentIndex="{x:Null}" DisplayName="For Each item in customer Order" sap:VirtualizedContainerService.HintSize="750,7635" sap2010:WorkflowViewState.IdRef="ForEach`1_7" Values="[customerOrder]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="s:String[]">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="s:String[]" Name="currentItem" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Hauptteil" sap:VirtualizedContainerService.HintSize="748,7381" sap2010:WorkflowViewState.IdRef="Sequence_84">
+          <Sequence DisplayName="Hauptteil" sap:VirtualizedContainerService.HintSize="748,7504" sap2010:WorkflowViewState.IdRef="Sequence_84">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -440,7 +442,7 @@
                 <InArgument x:TypeArguments="x:Int32">[CInt(itemTable.Rows(0)("Count"))]</InArgument>
               </Assign.Value>
             </Assign>
-            <If sap2010:Annotation.AnnotationText="Wir schauen, ob das Produkt nachbestellt werden muss" Condition="[itemCount &lt; orderAmount]" sap:VirtualizedContainerService.HintSize="714,6632" sap2010:WorkflowViewState.IdRef="If_24">
+            <If sap2010:Annotation.AnnotationText="Wir schauen, ob das Produkt nachbestellt werden muss" Condition="[itemCount &lt; orderAmount]" sap:VirtualizedContainerService.HintSize="714,6755" sap2010:WorkflowViewState.IdRef="If_24">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -449,7 +451,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <If.Then>
-                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="712,5984" sap2010:WorkflowViewState.IdRef="Sequence_90">
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="712,6107" sap2010:WorkflowViewState.IdRef="Sequence_90">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="x:String" Name="stockDiscrepancy" />
                   </Sequence.Variables>
@@ -484,7 +486,7 @@
                     </Assign.Value>
                   </Assign>
                   <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="678,123" sap2010:WorkflowViewState.IdRef="WriteLine_39" Text="[&quot;Refill amount: &quot; + refillAmount.ToString + &quot; for &quot; + refillName]" />
-                  <Sequence sap:VirtualizedContainerService.HintSize="678,5289" sap2010:WorkflowViewState.IdRef="Sequence_91">
+                  <Sequence sap:VirtualizedContainerService.HintSize="678,5412" sap2010:WorkflowViewState.IdRef="Sequence_91">
                     <Sequence.Variables>
                       <Variable x:TypeArguments="x:String" Name="OutUiElement" />
                     </Sequence.Variables>
@@ -494,13 +496,13 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                     <uix:NSetRuntimeBrowser BrowserType="Chrome" DisplayName="Set Runtime Browser" sap:VirtualizedContainerService.HintSize="644,120" sap2010:WorkflowViewState.IdRef="NSetRuntimeBrowser_4" Version="V4" />
-                    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome Neuer Tab" sap:VirtualizedContainerService.HintSize="644,5086" sap2010:WorkflowViewState.IdRef="NApplicationCard_8" InteractionMode="DebuggerApi" ScopeGuid="de9f95fe-af75-4014-8998-6f54e42180dd" Version="V2" WindowResize="Maximize">
+                    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome Neuer Tab" sap:VirtualizedContainerService.HintSize="644,5209" sap2010:WorkflowViewState.IdRef="NApplicationCard_8" InteractionMode="DebuggerApi" ScopeGuid="de9f95fe-af75-4014-8998-6f54e42180dd" Version="V2" WindowResize="Maximize">
                       <uix:NApplicationCard.Body>
                         <ActivityAction x:TypeArguments="x:Object">
                           <ActivityAction.Argument>
                             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
                           </ActivityAction.Argument>
-                          <Sequence DisplayName="Ausführen" sap:VirtualizedContainerService.HintSize="610,4845" sap2010:WorkflowViewState.IdRef="Sequence_92">
+                          <Sequence DisplayName="Ausführen" sap:VirtualizedContainerService.HintSize="610,4968" sap2010:WorkflowViewState.IdRef="Sequence_92">
                             <Sequence.Variables>
                               <Variable x:TypeArguments="ue:IReadWriteRangeRef" Name="Results" />
                               <Variable x:TypeArguments="x:String" Name="cheapestItem" />
@@ -516,7 +518,8 @@
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <uix:NGoToUrl DisplayName="Go To URL" sap:VirtualizedContainerService.HintSize="576,115" sap2010:WorkflowViewState.IdRef="NGoToUrl_5" Url="www.amazon.de" />
+                            <Delay Duration="00:00:04" sap:VirtualizedContainerService.HintSize="576,123" sap2010:WorkflowViewState.IdRef="Delay_15" />
+                            <uix:NGoToUrl DisplayName="Go To URL" sap:VirtualizedContainerService.HintSize="576,115" sap2010:WorkflowViewState.IdRef="NGoToUrl_5" Url="www.amazon.com" />
                             <Delay Duration="00:00:04" sap:VirtualizedContainerService.HintSize="576,123" sap2010:WorkflowViewState.IdRef="Delay_11" />
                             <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'All'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="576,251" sap2010:WorkflowViewState.IdRef="NTypeInto_4" ScopeIdentifier="de9f95fe-af75-4014-8998-6f54e42180dd" Text="[refillName + &quot;[k(Enter)]&quot;]" Version="V4">
                               <uix:NTypeInto.Target>
@@ -571,7 +574,7 @@
                                               <OutArgument x:TypeArguments="x:String">[currentPrice]</OutArgument>
                                             </Assign.To>
                                             <Assign.Value>
-                                              <InArgument x:TypeArguments="x:String">[currentRow.item("Price").ToString.replace("€", "")]</InArgument>
+                                              <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Replace(currentRow.item("Price").ToString, "[^0-9.,]", "")]</InArgument>
                                             </Assign.Value>
                                           </Assign>
                                           <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="504,123" sap2010:WorkflowViewState.IdRef="WriteLine_44" Text="[currentPrice.ToString]" />

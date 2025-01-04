@@ -4,8 +4,12 @@
   "description": "Handle order automation\r\nFor each loop and decision point \r\nusing database and refill stock (which will be automated separately)",
   "main": "Main.xaml",
   "dependencies": {
+    "Camunda.Api.Client": "[2.6.0]",
+    "Camunda.OpenApi.Client": "[1.4.0]",
     "Elsa.Activities.Sql": "[2.14.1]",
     "Google.Apis.WorkspaceEvents.v1": "[1.68.0.3587]",
+    "KazAgroCamunda.Api.Client": "[2.5.5]",
+    "Komsa.Camunda.Api.Client": "[2.8.0]",
     "UiPath.Database.Activities": "[1.9.0]",
     "UiPath.Excel.Activities": "[2.24.4]",
     "UiPath.GSuite.Activities": "[2.8.22]",
@@ -59,7 +63,10 @@
     }
   ],
   "isTemplate": true,
-  "templateProjectData": {},
+  "templateProjectData": {
+    "defaultProjectDescription": "Handle order automation\r\nFor each loop and decision point \r\nusing database and refill stock (which will be automated separately)",
+    "defaultProjectName": "HandleOrderVorlage"
+  },
   "publishData": {},
   "targetFramework": "Windows"
 }
