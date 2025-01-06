@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:sds="clr-namespace:System.Data.SQLite;assembly=System.Data.SQLite" xmlns:this="clr-namespace:" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ugadf="clr-namespace:UiPath.GSuite.Activities.Drive.Filters;assembly=UiPath.GSuite.Activities" xmlns:ugadt="clr-namespace:UiPath.GSuite.Activities.Drive.Triggers;assembly=UiPath.GSuite.Activities" xmlns:ugdm="clr-namespace:UiPath.GSuite.Drive.Models;assembly=UiPath.GSuite" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:ws="clr-namespace:Witrics.SQLite;assembly=Witrics.SQLite.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:isactr="http://schemas.uipath.com/workflow/integration-service-activities/isactr" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:sds="clr-namespace:System.Data.SQLite;assembly=System.Data.SQLite" xmlns:this="clr-namespace:" xmlns:uasc="clr-namespace:UiPath.Activities.System.Collections;assembly=UiPath.System.Activities" xmlns:uast="clr-namespace:UiPath.Activities.System.Text;assembly=UiPath.System.Activities" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ugadf="clr-namespace:UiPath.GSuite.Activities.Drive.Filters;assembly=UiPath.GSuite.Activities" xmlns:ugadt="clr-namespace:UiPath.GSuite.Activities.Drive.Triggers;assembly=UiPath.GSuite.Activities" xmlns:ugdm="clr-namespace:UiPath.GSuite.Drive.Models;assembly=UiPath.GSuite" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uisape="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.PDF.ExtractPDFText;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:ws="clr-namespace:Witrics.SQLite;assembly=Witrics.SQLite.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="UiPathEventConnector" Type="InArgument(x:String)" />
     <x:Property Name="UiPathEvent" Type="InArgument(x:String)" />
@@ -183,6 +183,15 @@
       <x:String>UiPath.GSuite</x:String>
       <x:String>UiPath.Activities.System.Jobs</x:String>
       <x:String>UiPath.Core.Activities.Orchestrator</x:String>
+      <x:String>UiPath.IntegrationService.Activities.Runtime.Models</x:String>
+      <x:String>UiPath.IntegrationService.Activities.Runtime.Helpers.TypeDetailsCustomization</x:String>
+      <x:String>UiPath.IntegrationService.Activities.Runtime.Activities</x:String>
+      <x:String>UiPath.Platform.Activities</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>UiPath.Activities.System.Collections</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.PDF.ExtractPDFText</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.PDF</x:String>
+      <x:String>UiPath.Platform</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -314,6 +323,10 @@
       <AssemblyReference>UiPath.GSuite.Activities</AssemblyReference>
       <AssemblyReference>UiPath.GSuite</AssemblyReference>
       <AssemblyReference>Studio.Generated.TypedDataRow1</AssemblyReference>
+      <AssemblyReference>UiPath.IntegrationService.Activities.Runtime</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>UiPath.IntelligentOCR.StudioWeb.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.CodedWorkflows</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <sap:WorkflowViewStateService.ViewState>
@@ -321,7 +334,7 @@
       <x:Boolean x:Key="ShouldCollapseAll">False</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="989,7991" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="1836,12773" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sds:SQLiteConnection" Name="database" />
       <Variable x:TypeArguments="sd:DataTable" Name="itemTable" />
@@ -337,41 +350,327 @@
       <Variable x:TypeArguments="s:Int32[]" Default="[{100}]" Name="orderCount" />
       <Variable x:TypeArguments="x:Int32" Name="newStockCount" />
       <Variable x:TypeArguments="ugdm:GDriveRemoteItem" Name="___map_NewFileCreated_1__Result" />
+      <Variable x:TypeArguments="x:String" Name="outputText" />
+      <Variable x:TypeArguments="x:String" Name="totalprice" />
+      <Variable x:TypeArguments="x:String" Name="orderid" />
+      <Variable x:TypeArguments="x:String" Name="dataTableJson" />
+      <Variable x:TypeArguments="x:String" Name="messageJSON" />
+      <Variable x:TypeArguments="x:String" Name="sgSender" />
+      <Variable x:TypeArguments="x:String" Name="sgReceiver" />
+      <Variable x:TypeArguments="x:String" Name="sgSubject" />
+      <Variable x:TypeArguments="x:String" Name="sgContent" />
+      <Variable x:TypeArguments="x:String" Name="sgTemplateId" />
+      <Variable x:TypeArguments="x:Int32" Name="outCode" />
+      <Variable x:TypeArguments="x:String" Name="outHeaders" />
+      <Variable x:TypeArguments="x:String" Name="outBody" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dataTable">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:String x:Key="SourceIdRef">BuildDataTable_2</x:String>
+            <x:String x:Key="SourcePropertyName">DataTable</x:String>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </Variable>
+      <Variable x:TypeArguments="x:String" Name="extractedText">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:String x:Key="SourceIdRef">ExtractPDFText_1</x:String>
+            <x:String x:Key="SourcePropertyName">Text</x:String>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </Variable>
+      <Variable x:TypeArguments="x:String" Name="extractedCustomerData" />
+      <Variable x:TypeArguments="x:String" Name="name" />
+      <Variable x:TypeArguments="x:String" Name="products" />
+      <Variable x:TypeArguments="x:String" Name="totalCost" />
+      <Variable x:TypeArguments="scg:IEnumerable(x:String)" Name="products_array" />
+      <Variable x:TypeArguments="x:String" Name="products_data" />
+      <Variable x:TypeArguments="scg:List(x:String)" Default="[new System.Collections.Generic.List(Of System.String) From {  }]" Name="product_list" />
+      <Variable x:TypeArguments="x:String" Name="product" />
+      <Variable x:TypeArguments="x:String" Name="currentText" />
+      <Variable x:TypeArguments="x:String" Name="comma_text">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:String x:Key="SourceIdRef">Replace_1</x:String>
+            <x:String x:Key="SourcePropertyName">Result</x:String>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </Variable>
+      <Variable x:TypeArguments="ugdm:GDriveRemoteItem" Name="spreadsheet" />
+      <Variable x:TypeArguments="x:String" Name="address" />
+      <Variable x:TypeArguments="x:String" Name="email" />
+      <Variable x:TypeArguments="sd:DataTable" Default="[new System.Data.DataTable With {.TableName = &quot;TableName&quot;}]" Name="products_dt" />
+      <Variable x:TypeArguments="sd:DataTable" Default="[new System.Data.DataTable With {.TableName = &quot;TableName&quot;}]" Name="first_row_dt" />
+      <Variable x:TypeArguments="sd:DataTable" Default="[new System.Data.DataTable With {.TableName = &quot;TableName&quot;}]" Name="dataTable_1">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:String x:Key="SourceIdRef">GenerateDataTable_5</x:String>
+            <x:String x:Key="SourcePropertyName">DataTable</x:String>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </Variable>
+      <Variable x:TypeArguments="scg:List(x:Object)" Default="[new System.Collections.Generic.List(Of System.Object) From {  }]" Name="product_list_filter">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:String x:Key="SourceIdRef">RemoveFromCollection`1_1</x:String>
+            <x:String x:Key="SourcePropertyName">Result</x:String>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </Variable>
+      <Variable x:TypeArguments="sd:DataTable" Default="[new System.Data.DataTable With {.TableName = &quot;TableName&quot;}]" Name="bestellung_dt" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="750,57" sap2010:WorkflowViewState.IdRef="CommentOut_9">
-      <ui:CommentOut.Body>
-        <Sequence DisplayName="Ignorierte Aktivitäten" sap:VirtualizedContainerService.HintSize="512,596.5" sap2010:WorkflowViewState.IdRef="Sequence_114">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <Sequence sap:VirtualizedContainerService.HintSize="478,536.5" sap2010:WorkflowViewState.IdRef="Sequence_113">
+    <ugadt:NewFileCreated ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" JobData="{x:Null}" AllLabels="W10=" AuthScopesInvalid="False" BrowserLocation="https://drive.google.com/drive/folders/11HNdb74KfsvXZrGVCShCk-DE_GhWGB87" ConnectionId="45896dc7-faf5-4122-95eb-dfe0e624b0f5" DisplayName="When a New Invoice File is Created" FilterExpression="(ParentID=='11HNdb74KfsvXZrGVCShCk-DE_GhWGB87')&amp;&amp;((contains(Extension,'pdf'))||(contains(Extension,'tif'))||(contains(Extension,'jpg'))||(contains(Extension,'jpeg'))||(contains(Extension,'png')))" sap:VirtualizedContainerService.HintSize="784,77" sap2010:WorkflowViewState.IdRef="NewFileCreated_6" LocationFriendlyName="Invoice" Result="[___map_NewFileCreated_1__Result]" UiPathEvent="[UiPathEvent]" UiPathEventConnector="[UiPathEventConnector]" UiPathEventObjectId="[UiPathEventObjectId]" UiPathEventObjectType="[UiPathEventObjectType]" UseConnectionService="True">
+      <ugadt:NewFileCreated.Filter>
+        <ugadf:TriggerFileFilterCollection LogicalOperator="Or">
+          <ugadf:TriggerFileFilterCollection.Filters>
+            <ugadf:TriggerFileFilterElement Criteria="FileExtension" StringOperator="Contains" StringValue="pdf" />
+            <ugadf:TriggerFileFilterElement Criteria="FileExtension" StringOperator="Contains" StringValue="tif" />
+            <ugadf:TriggerFileFilterElement Criteria="FileExtension" StringOperator="Contains" StringValue="jpg" />
+            <ugadf:TriggerFileFilterElement Criteria="FileExtension" StringOperator="Contains" StringValue="jpeg" />
+            <ugadf:TriggerFileFilterElement Criteria="FileExtension" StringOperator="Contains" StringValue="png" />
+          </ugadf:TriggerFileFilterCollection.Filters>
+        </ugadf:TriggerFileFilterCollection>
+      </ugadt:NewFileCreated.Filter>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ugadt:NewFileCreated>
+    <WriteLine DisplayName="Write Invoice File Name to Console" sap:VirtualizedContainerService.HintSize="784,57" sap2010:WorkflowViewState.IdRef="WriteLine_58" Text="[string.Format(&quot;Processing invoice with name {0}&quot;, ___map_NewFileCreated_1__Result.FullName)]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </WriteLine>
+    <uisape:ExtractPDFText ApplyOcr="{x:Null}" FilePassword="{x:Null}" OcrEngine="{x:Null}" DisplayName="Extract PDF Text" sap:VirtualizedContainerService.HintSize="784,57" sap2010:WorkflowViewState.IdRef="ExtractPDFText_1" PdfFile="[___map_NewFileCreated_1__Result]" Text="[extractedText]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </uisape:ExtractPDFText>
+    <ui:TextToLeftRight TextToLeft="{x:Null}" DisplayName="Name" FullText="[string.Format(&quot;{0}&quot;, extractedText)]" sap:VirtualizedContainerService.HintSize="784,57" sap2010:WorkflowViewState.IdRef="TextToLeftRight_2" Separator="Customer:" SeparatorKey="Custom" TextToRight="[name]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:TextToLeftRight>
+    <ui:TextToLeftRight TextToRight="{x:Null}" CustomSeparatorEnabled="False" DisplayName="Get Name" FullText="[string.Format(&quot;{0}&quot;, name)]" sap:VirtualizedContainerService.HintSize="784,57" sap2010:WorkflowViewState.IdRef="TextToLeftRight_3" Separator="&#xD;&#xA;" SeparatorKey="NewLine" TextToLeft="[name]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:TextToLeftRight>
+    <ui:TextToLeftRight TextToLeft="{x:Null}" DisplayName="Address" FullText="[string.Format(&quot;{0}&quot;, extractedText)]" sap:VirtualizedContainerService.HintSize="784,57" sap2010:WorkflowViewState.IdRef="TextToLeftRight_14" Separator="Address:" SeparatorKey="Custom" TextToRight="[address]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:TextToLeftRight>
+    <ui:TextToLeftRight TextToRight="{x:Null}" CustomSeparatorEnabled="False" DisplayName="Get Address" FullText="[address]" sap:VirtualizedContainerService.HintSize="784,57" sap2010:WorkflowViewState.IdRef="TextToLeftRight_15" Separator="&#xD;&#xA;" SeparatorKey="NewLine" TextToLeft="[address]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:TextToLeftRight>
+    <ui:TextToLeftRight TextToLeft="{x:Null}" DisplayName="Email" FullText="[string.Format(&quot;{0}&quot;, extractedText)]" sap:VirtualizedContainerService.HintSize="784,57" sap2010:WorkflowViewState.IdRef="TextToLeftRight_16" Separator="Email:" SeparatorKey="Custom" TextToRight="[email]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:TextToLeftRight>
+    <ui:TextToLeftRight TextToRight="{x:Null}" CustomSeparatorEnabled="False" DisplayName="Get Email" FullText="[email]" sap:VirtualizedContainerService.HintSize="784,57" sap2010:WorkflowViewState.IdRef="TextToLeftRight_13" Separator="&#xD;&#xA;" SeparatorKey="NewLine" TextToLeft="[email]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:TextToLeftRight>
+    <ui:TextToLeftRight TextToLeft="{x:Null}" DisplayName="Text to Left/Right 2" FullText="[string.Format(&quot;{0}&quot;, extractedText)]" sap:VirtualizedContainerService.HintSize="784,57" sap2010:WorkflowViewState.IdRef="TextToLeftRight_12" Separator="Product Order Count Stock Count Cost (EUR)" SeparatorKey="Custom" TextToRight="[products]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:TextToLeftRight>
+    <ui:TextToLeftRight DisplayName="Text to Left/Right 3" FullText="[string.Format(&quot;{0}&quot;, products)]" sap:VirtualizedContainerService.HintSize="784,57" sap2010:WorkflowViewState.IdRef="TextToLeftRight_17" Separator="Total Cost: EUR" SeparatorKey="Custom" TextToLeft="[products]" TextToRight="[totalCost]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:TextToLeftRight>
+    <uast:SplitText DisplayName="Split Text" sap:VirtualizedContainerService.HintSize="784,57" sap2010:WorkflowViewState.IdRef="SplitText_2" Results="[products_array]" Separator="NewLine" SeparatorKey="NewLine" Source="[string.Format(&quot;{0}&quot;, products)]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </uast:SplitText>
+    <ui:TextToLeftRight TextToRight="{x:Null}" CustomSeparatorEnabled="False" DisplayName="Text to Left/Right 4" FullText="[string.Format(&quot;{0}&quot;, totalCost)]" sap:VirtualizedContainerService.HintSize="784,57" sap2010:WorkflowViewState.IdRef="TextToLeftRight_18" Separator="&#xD;&#xA;" SeparatorKey="NewLine" TextToLeft="[totalCost]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:TextToLeftRight>
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each currentText" sap:VirtualizedContainerService.HintSize="784,57" sap2010:WorkflowViewState.IdRef="ForEach`1_10" Values="[products_array]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="x:String">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:String" Name="currentText" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="452,478" sap2010:WorkflowViewState.IdRef="Sequence_124">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ugadt:NewFileCreated ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" JobData="{x:Null}" AllLabels="W10=" AuthScopesInvalid="False" BrowserLocation="https://drive.google.com/drive/folders/1dZht8Fi4ucHAU91XUBsuX-PGLr5peyII" ConnectionId="583a39e3-f154-4f59-aa85-83890605f40e" DisplayName="When a New Invoice File is Created" FilterExpression="(ParentID=='1dZht8Fi4ucHAU91XUBsuX-PGLr5peyII')&amp;&amp;((contains(Extension,'pdf'))||(contains(Extension,'tif'))||(contains(Extension,'jpg'))||(contains(Extension,'jpeg'))||(contains(Extension,'png')))" sap:VirtualizedContainerService.HintSize="444,259.5" sap2010:WorkflowViewState.IdRef="NewFileCreated_1" LocationFriendlyName="Generated Excel files" Result="[___map_NewFileCreated_1__Result]" UiPathEvent="[UiPathEvent]" UiPathEventConnector="[UiPathEventConnector]" UiPathEventObjectId="[UiPathEventObjectId]" UiPathEventObjectType="[UiPathEventObjectType]" UseConnectionService="True">
-              <ugadt:NewFileCreated.Filter>
-                <ugadf:TriggerFileFilterCollection LogicalOperator="Or">
-                  <ugadf:TriggerFileFilterCollection.Filters>
-                    <ugadf:TriggerFileFilterElement Criteria="FileExtension" StringOperator="Contains" StringValue="pdf" />
-                    <ugadf:TriggerFileFilterElement Criteria="FileExtension" StringOperator="Contains" StringValue="tif" />
-                    <ugadf:TriggerFileFilterElement Criteria="FileExtension" StringOperator="Contains" StringValue="jpg" />
-                    <ugadf:TriggerFileFilterElement Criteria="FileExtension" StringOperator="Contains" StringValue="jpeg" />
-                    <ugadf:TriggerFileFilterElement Criteria="FileExtension" StringOperator="Contains" StringValue="png" />
-                  </ugadf:TriggerFileFilterCollection.Filters>
-                </ugadf:TriggerFileFilterCollection>
-              </ugadt:NewFileCreated.Filter>
-            </ugadt:NewFileCreated>
-            <ueab:ReadRangeX SaveTo="{x:Null}" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="444,194" sap2010:WorkflowViewState.IdRef="ReadRangeX_2" Range="[___map_NewFileCreated_1__Result]" />
+            <If Condition="[string.IsNullOrEmpty(currentText) = false]" DisplayName="If" sap:VirtualizedContainerService.HintSize="418,418" sap2010:WorkflowViewState.IdRef="If_33">
+              <If.Then>
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,200" sap2010:WorkflowViewState.IdRef="Sequence_122">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:Replace DisplayName="Replace Matching Patterns" sap:VirtualizedContainerService.HintSize="382,92" sap2010:WorkflowViewState.IdRef="Replace_1" Input="[string.Format(&quot;{0}&quot;, currentText)]" IsBuilderTabModified="False" Pattern="\s" RegexOption="IgnoreCase, Compiled" Replacement="," Result="[comma_text]" />
+                  <AddToCollection x:TypeArguments="x:String" sap:WorkflowViewStateService.ViewState="{x:Null}" Collection="[product_list]" DisplayName="Add To Collection" sap:VirtualizedContainerService.HintSize="382,48" sap2010:WorkflowViewState.IdRef="AddToCollection`1_1" Item="[string.Format(&quot;{0}&quot;, comma_text)]" />
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,89" sap2010:WorkflowViewState.IdRef="Sequence_123">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </If.Else>
+            </If>
           </Sequence>
+        </ActivityAction>
+      </ui:ForEach.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ForEach>
+    <ui:GenerateDataTable ColumnSeparators="{x:Null}" ColumnSizes="{x:Null}" NewLineSeparator="{x:Null}" Positions="{x:Null}" AutoDetectTypes="False" CSVParsing="True" DataTable="[bestellung_dt]" DisplayName="Generate Data Table From Text" sap:VirtualizedContainerService.HintSize="784,57" sap2010:WorkflowViewState.IdRef="GenerateDataTable_4" Input="Name, Email, Address, Product Name, Order Count, Cost (EUR), Stock Count" UseRowHeader="True">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:GenerateDataTable>
+    <ui:GenerateDataTable ColumnSeparators="{x:Null}" ColumnSizes="{x:Null}" NewLineSeparator="{x:Null}" Positions="{x:Null}" AutoDetectTypes="False" CSVParsing="True" DataTable="[first_row_dt]" DisplayName="Generate Data Table From Text 2" sap:VirtualizedContainerService.HintSize="784,57" sap2010:WorkflowViewState.IdRef="GenerateDataTable_5" Input="[name + &quot;, &quot; + email + &quot;, &quot; + address + &quot;, &quot; + product_list.Item(0)]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:GenerateDataTable>
+    <ui:MergeDataTable Destination="[bestellung_dt]" DisplayName="Merge Data Table" sap:VirtualizedContainerService.HintSize="784,57" sap2010:WorkflowViewState.IdRef="MergeDataTable_3" MissingSchemaAction="Ignore" Source="[first_row_dt]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:MergeDataTable>
+    <Sequence sap2010:Annotation.AnnotationText="pop first element in collection" DisplayName="Sequence 1" sap:VirtualizedContainerService.HintSize="784,57" sap2010:WorkflowViewState.IdRef="Sequence_149">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <uasc:RemoveFromCollection x:TypeArguments="x:Object" Item="{x:Null}" Collection="[product_list.Cast(Of Object)().ToList()]" DisplayName="Remove first element from collection" sap:VirtualizedContainerService.HintSize="416,240" sap2010:WorkflowViewState.IdRef="RemoveFromCollection`1_2" Index="0" RemoveAllElements="False" Result="[product_list_filter]" />
+    </Sequence>
+    <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each currentItem" sap:VirtualizedContainerService.HintSize="784,579" sap2010:WorkflowViewState.IdRef="ForEach`1_11" Values="[product_list_filter]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="currentItem" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="416,449" sap2010:WorkflowViewState.IdRef="Sequence_127">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:GenerateDataTable ColumnSeparators="{x:Null}" ColumnSizes="{x:Null}" NewLineSeparator="{x:Null}" Positions="{x:Null}" AutoDetectTypes="False" CSVParsing="True" DataTable="[dataTable_1]" DisplayName="Generate Data Table From Text 3" sap:VirtualizedContainerService.HintSize="382,233" sap2010:WorkflowViewState.IdRef="GenerateDataTable_6" Input="[&quot;, , , &quot; + currentItem.ToString()]" />
+            <ui:MergeDataTable Destination="[bestellung_dt]" DisplayName="Merge Data Table 2" sap:VirtualizedContainerService.HintSize="382,156" sap2010:WorkflowViewState.IdRef="MergeDataTable_4" MissingSchemaAction="Ignore" Source="[dataTable_1]" />
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEach.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ForEach>
+    <ws:CreateConnection DatabasePath="C:\Users\rexbr\Downloads\Stock" DisplayName="Connect DB" sap:VirtualizedContainerService.HintSize="784,165" sap2010:WorkflowViewState.IdRef="CreateConnection_5" Output="[database]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ws:CreateConnection>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="784,57" sap2010:WorkflowViewState.IdRef="CommentOut_14">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignorierte Aktivitäten" sap:VirtualizedContainerService.HintSize="468,165" sap2010:WorkflowViewState.IdRef="Sequence_131">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_134">
+            <Assign.To>
+              <OutArgument x:TypeArguments="s:String[][]">[customerOrder]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="s:String[][]">[bestellung_dt]</InArgument>
+            </Assign.Value>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Assign>
         </Sequence>
       </ui:CommentOut.Body>
       <sap:WorkflowViewStateService.ViewState>
@@ -381,503 +680,1180 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:CommentOut>
-    <ws:CreateConnection DatabasePath="C:\Program Files\SQLiteStudio\Stock" DisplayName="Connect DB" sap:VirtualizedContainerService.HintSize="750,57" sap2010:WorkflowViewState.IdRef="CreateConnection_5" Output="[database]">
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-    </ws:CreateConnection>
-    <Assign sap:VirtualizedContainerService.HintSize="750,115" sap2010:WorkflowViewState.IdRef="Assign_100">
-      <Assign.To>
-        <OutArgument x:TypeArguments="s:String[][]">[customerOrder]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="s:String[][]">[{({"Pen", "100"})}]</InArgument>
-      </Assign.Value>
-    </Assign>
-    <ui:ForEach x:TypeArguments="s:String[]" CurrentIndex="{x:Null}" DisplayName="For Each item in customer Order" sap:VirtualizedContainerService.HintSize="750,7635" sap2010:WorkflowViewState.IdRef="ForEach`1_7" Values="[customerOrder]">
-      <ui:ForEach.Body>
-        <ActivityAction x:TypeArguments="s:String[]">
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[bestellung_dt]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="784,7869" sap2010:WorkflowViewState.IdRef="ForEachRow_5">
+      <ui:ForEachRow.Body>
+        <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="s:String[]" Name="currentItem" />
+            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="currentItem" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Hauptteil" sap:VirtualizedContainerService.HintSize="748,7504" sap2010:WorkflowViewState.IdRef="Sequence_84">
+          <Sequence DisplayName="Text" sap:VirtualizedContainerService.HintSize="782,7689" sap2010:WorkflowViewState.IdRef="Sequence_132">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Assign sap:VirtualizedContainerService.HintSize="714,115" sap2010:WorkflowViewState.IdRef="Assign_95">
-              <Assign.To>
-                <OutArgument x:TypeArguments="x:String">[itemName]</OutArgument>
-              </Assign.To>
-              <Assign.Value>
-                <InArgument x:TypeArguments="x:String">[currentItem(0).ToString]</InArgument>
-              </Assign.Value>
-            </Assign>
-            <Assign sap:VirtualizedContainerService.HintSize="714,115" sap2010:WorkflowViewState.IdRef="Assign_97">
-              <Assign.To>
-                <OutArgument x:TypeArguments="x:Int32">[orderAmount]</OutArgument>
-              </Assign.To>
-              <Assign.Value>
-                <InArgument x:TypeArguments="x:Int32">[Convert.toInt32(currentItem(1).ToString)]</InArgument>
-              </Assign.Value>
-            </Assign>
-            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="714,123" sap2010:WorkflowViewState.IdRef="WriteLine_50" Text="[&quot;Name: &quot; + itemName + &quot; - Amount: &quot; + orderAmount.ToString]" />
-            <ws:ExecuteQuery DatabasePath="{x:Null}" Connection="[database]" DisplayName="Get Info of item from DB" sap:VirtualizedContainerService.HintSize="714,221" sap2010:WorkflowViewState.IdRef="ExecuteQuery_4" QueryResult="[itemTable]" SQLCommand="[&quot;SELECT * FROM 'Item Stock' WHERE Name = '&quot; + itemName + &quot;'&quot;]">
+            <Sequence DisplayName="Hauptteil" sap:VirtualizedContainerService.HintSize="748,7629" sap2010:WorkflowViewState.IdRef="Sequence_139">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-            </ws:ExecuteQuery>
-            <Assign sap:VirtualizedContainerService.HintSize="714,115" sap2010:WorkflowViewState.IdRef="Assign_92">
-              <Assign.To>
-                <OutArgument x:TypeArguments="x:Int32">[itemCount]</OutArgument>
-              </Assign.To>
-              <Assign.Value>
-                <InArgument x:TypeArguments="x:Int32">[CInt(itemTable.Rows(0)("Count"))]</InArgument>
-              </Assign.Value>
-            </Assign>
-            <If sap2010:Annotation.AnnotationText="Wir schauen, ob das Produkt nachbestellt werden muss" Condition="[itemCount &lt; orderAmount]" sap:VirtualizedContainerService.HintSize="714,6755" sap2010:WorkflowViewState.IdRef="If_24">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-              <If.Then>
-                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="712,6107" sap2010:WorkflowViewState.IdRef="Sequence_90">
-                  <Sequence.Variables>
-                    <Variable x:TypeArguments="x:String" Name="stockDiscrepancy" />
-                  </Sequence.Variables>
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <Assign sap:VirtualizedContainerService.HintSize="678,115" sap2010:WorkflowViewState.IdRef="Assign_93">
-                    <Assign.To>
-                      <OutArgument x:TypeArguments="x:Int32">[refillAmount]</OutArgument>
-                    </Assign.To>
-                    <Assign.Value>
-                      <InArgument x:TypeArguments="x:Int32">[orderAmount - itemCount + 1]</InArgument>
-                    </Assign.Value>
-                  </Assign>
-                  <Assign sap:VirtualizedContainerService.HintSize="678,115" sap2010:WorkflowViewState.IdRef="Assign_99">
-                    <Assign.To>
-                      <OutArgument x:TypeArguments="x:Int32">[newStockCount]</OutArgument>
-                    </Assign.To>
-                    <Assign.Value>
-                      <InArgument x:TypeArguments="x:Int32">[refillAmount + itemCount - orderAmount]</InArgument>
-                    </Assign.Value>
-                  </Assign>
-                  <ws:ExecuteNonQuery DatabasePath="{x:Null}" Connection="[database]" DisplayName="Execute non query" sap:VirtualizedContainerService.HintSize="678,167" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_3" SQLCommand="[&quot;UPDATE 'Item Stock' SET Count = '&quot; + newStockCount.ToString + &quot;' WHERE Name = '&quot; + itemName + &quot;'&quot;]" />
-                  <Assign sap:VirtualizedContainerService.HintSize="678,115" sap2010:WorkflowViewState.IdRef="Assign_94">
-                    <Assign.To>
-                      <OutArgument x:TypeArguments="x:String">[refillName]</OutArgument>
-                    </Assign.To>
-                    <Assign.Value>
-                      <InArgument x:TypeArguments="x:String">[itemName.ToString]</InArgument>
-                    </Assign.Value>
-                  </Assign>
-                  <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="678,123" sap2010:WorkflowViewState.IdRef="WriteLine_39" Text="[&quot;Refill amount: &quot; + refillAmount.ToString + &quot; for &quot; + refillName]" />
-                  <Sequence sap:VirtualizedContainerService.HintSize="678,5412" sap2010:WorkflowViewState.IdRef="Sequence_91">
+              <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="714,122" sap2010:WorkflowViewState.IdRef="WriteLine_64" Text="[currentItem.ToString]" />
+              <Assign sap:VirtualizedContainerService.HintSize="714,114" sap2010:WorkflowViewState.IdRef="Assign_113">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[itemName]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[currentItem(0).ToString]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap:VirtualizedContainerService.HintSize="714,114" sap2010:WorkflowViewState.IdRef="Assign_114">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Int32">[orderAmount]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Int32">[Convert.toInt32(currentItem(1).ToString)]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="714,122" sap2010:WorkflowViewState.IdRef="WriteLine_59" Text="[&quot;Name: &quot; + itemName + &quot; - Amount: &quot; + orderAmount.ToString]" />
+              <ws:ExecuteQuery DatabasePath="{x:Null}" Connection="[database]" DisplayName="Get Info of item from DB" sap:VirtualizedContainerService.HintSize="714,218" sap2010:WorkflowViewState.IdRef="ExecuteQuery_5" QueryResult="[itemTable]" SQLCommand="[&quot;SELECT * FROM 'Item Stock' WHERE Name = '&quot; + itemName + &quot;'&quot;]">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ws:ExecuteQuery>
+              <Assign sap:VirtualizedContainerService.HintSize="714,114" sap2010:WorkflowViewState.IdRef="Assign_115">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Int32">[itemCount]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Int32">[CInt(itemTable.Rows(0)("Count"))]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <If sap2010:Annotation.AnnotationText="Wir schauen, ob das Produkt nachbestellt werden muss" Condition="[itemCount &lt; orderAmount]" sap:VirtualizedContainerService.HintSize="714,6742" sap2010:WorkflowViewState.IdRef="If_34">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Then>
+                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="712,6099" sap2010:WorkflowViewState.IdRef="Sequence_133">
                     <Sequence.Variables>
-                      <Variable x:TypeArguments="x:String" Name="OutUiElement" />
+                      <Variable x:TypeArguments="x:String" Name="stockDiscrepancy" />
                     </Sequence.Variables>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <uix:NSetRuntimeBrowser BrowserType="Chrome" DisplayName="Set Runtime Browser" sap:VirtualizedContainerService.HintSize="644,120" sap2010:WorkflowViewState.IdRef="NSetRuntimeBrowser_4" Version="V4" />
-                    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome Neuer Tab" sap:VirtualizedContainerService.HintSize="644,5209" sap2010:WorkflowViewState.IdRef="NApplicationCard_8" InteractionMode="DebuggerApi" ScopeGuid="de9f95fe-af75-4014-8998-6f54e42180dd" Version="V2" WindowResize="Maximize">
-                      <uix:NApplicationCard.Body>
-                        <ActivityAction x:TypeArguments="x:Object">
-                          <ActivityAction.Argument>
-                            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
-                          </ActivityAction.Argument>
-                          <Sequence DisplayName="Ausführen" sap:VirtualizedContainerService.HintSize="610,4968" sap2010:WorkflowViewState.IdRef="Sequence_92">
-                            <Sequence.Variables>
-                              <Variable x:TypeArguments="ue:IReadWriteRangeRef" Name="Results" />
-                              <Variable x:TypeArguments="x:String" Name="cheapestItem" />
-                              <Variable x:TypeArguments="x:String" Name="cheapestCost" />
-                              <Variable x:TypeArguments="x:String" Name="cheapestURL">
-                                <Variable.Default>
-                                  <Literal x:TypeArguments="x:String" Value="" />
-                                </Variable.Default>
-                              </Variable>
-                            </Sequence.Variables>
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                            <Delay Duration="00:00:04" sap:VirtualizedContainerService.HintSize="576,123" sap2010:WorkflowViewState.IdRef="Delay_15" />
-                            <uix:NGoToUrl DisplayName="Go To URL" sap:VirtualizedContainerService.HintSize="576,115" sap2010:WorkflowViewState.IdRef="NGoToUrl_5" Url="www.amazon.com" />
-                            <Delay Duration="00:00:04" sap:VirtualizedContainerService.HintSize="576,123" sap2010:WorkflowViewState.IdRef="Delay_11" />
-                            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'All'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="576,251" sap2010:WorkflowViewState.IdRef="NTypeInto_4" ScopeIdentifier="de9f95fe-af75-4014-8998-6f54e42180dd" Text="[refillName + &quot;[k(Enter)]&quot;]" Version="V4">
-                              <uix:NTypeInto.Target>
-                                <uix:TargetAnchorable BrowserURL="amazon.de" CVScreenId="5ebfaa5f-d038-44be-b8ba-c0c362425c0f" ContentHash="6V0yqg216kOVIo_3ITYWKg" CvElementArea="349, 137, 1078, 42" CvType="InputBox" DesignTimeRectangle="356, 140, 1059, 38" DesignTimeScaleFactor="1" ElementType="InputBox" FuzzySelectorArgument="&lt;webctrl id='twotabsearchtextbox' tag='INPUT' type='text' class='nav-input nav-progressive-attribute' placeholder='Search Amazon.de' aaname='Search Amazon.de' /&gt;" Guid="bd4b6537-5ee5-47db-b59f-fd5011574570" InformativeScreenshot="c44d55d2f7cab3557aa783c51695dcaf.png" IsResponsive="True" Reference="itrJpdWr7Ee3YZjVAIn54A/gGauSJ-pgUyOyY-anFjnww" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Amazon.de: Low Prices in Electronics, Books, Sports Equipment &amp;amp; more' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive">
-                                  <uix:TargetAnchorable.Anchors>
-                                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                                      <uix:Target CVScreenId="5ebfaa5f-d038-44be-b8ba-c0c362425c0f" CvTextArea="314, 153, 17, 12" CvTextArgument="All" CvType="Text" DesignTimeRectangle="315, 143, 19, 33" ElementType="Text" FuzzySelectorArgument="&lt;webctrl id='nav-search-label-id' tag='SPAN' type='' class='nav-search-label nav-progressive-content' aaname='All' check:innerText='All' /&gt;" Guid="93ec3225-0028-454f-b074-42fa3b883ef8" SearchSteps="FuzzySelector, CV" />
-                                    </scg:List>
-                                  </uix:TargetAnchorable.Anchors>
-                                </uix:TargetAnchorable>
-                              </uix:NTypeInto.Target>
-                            </uix:NTypeInto>
-                            <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="576,123" sap2010:WorkflowViewState.IdRef="Delay_12" />
-                            <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[ExtractDataTable]" DisplayName="Extract Table Data" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Structured' AddCvHeader='true' IsScrollEnabled='false'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column0' Name='Name'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column3' Name='URL'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;true&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column4' Name='Price'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;/row&gt;&lt;column exact='1' name='Column0' attr='fulltext' name2='Column3' attr2='href'&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;webctrl tag='h2' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column4' attr='fulltext'&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='4' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;webctrl tag='span' idx='2' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="576,190" sap2010:WorkflowViewState.IdRef="NExtractData_13" LimitExtractionTo="None" MaximumResults="0" ScopeIdentifier="de9f95fe-af75-4014-8998-6f54e42180dd" Version="V4">
-                              <uix:NExtractData.Target>
-                                <uix:TargetAnchorable BrowserURL="https://www.amazon.de/s?k=Fu%C3%9Fball&amp;ref=nb_sb_noss" DesignTimeRectangle="363, -70, 1497, 10199" DesignTimeScaleFactor="1" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;span&amp;gt;div' parentid='search' tag='DIV' /&gt;" Guid="1ac884b0-73a5-4a0a-9c2e-2c418e18d5ca" InformativeScreenshot="2fdd93e831af7bc8c6b77ec63b7cfcca.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Amazon.de : Fußball' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
-                              </uix:NExtractData.Target>
-                            </uix:NExtractData>
-                            <Assign sap:VirtualizedContainerService.HintSize="576,115" sap2010:WorkflowViewState.IdRef="Assign_78">
-                              <Assign.To>
-                                <OutArgument x:TypeArguments="x:String">[cheapestCost]</OutArgument>
-                              </Assign.To>
-                              <Assign.Value>
-                                <InArgument x:TypeArguments="x:String">999.99</InArgument>
-                              </Assign.Value>
-                            </Assign>
-                            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[ExtractDataTable]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="576,1666" sap2010:WorkflowViewState.IdRef="ForEachRow_4">
-                              <ui:ForEachRow.Body>
-                                <ActivityAction x:TypeArguments="sd:DataRow">
-                                  <ActivityAction.Argument>
-                                    <DelegateInArgument x:TypeArguments="sd:DataRow" Name="currentRow" />
-                                  </ActivityAction.Argument>
-                                  <Sequence DisplayName="Text" sap:VirtualizedContainerService.HintSize="574,1484" sap2010:WorkflowViewState.IdRef="Sequence_93">
+                    <Assign sap:VirtualizedContainerService.HintSize="678,114" sap2010:WorkflowViewState.IdRef="Assign_116">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Int32">[refillAmount]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Int32">[orderAmount - itemCount + 1]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <Assign sap:VirtualizedContainerService.HintSize="678,114" sap2010:WorkflowViewState.IdRef="Assign_117">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Int32">[newStockCount]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Int32">[refillAmount + itemCount - orderAmount]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ws:ExecuteNonQuery DatabasePath="{x:Null}" Connection="[database]" DisplayName="Execute non query" sap:VirtualizedContainerService.HintSize="678,165" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_4" SQLCommand="[&quot;UPDATE 'Item Stock' SET Count = '&quot; + newStockCount.ToString + &quot;' WHERE Name = '&quot; + itemName + &quot;'&quot;]" />
+                    <Assign sap:VirtualizedContainerService.HintSize="678,114" sap2010:WorkflowViewState.IdRef="Assign_118">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[refillName]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[itemName.ToString]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="678,122" sap2010:WorkflowViewState.IdRef="WriteLine_60" Text="[&quot;Refill amount: &quot; + refillAmount.ToString + &quot; for &quot; + refillName]" />
+                    <Sequence sap:VirtualizedContainerService.HintSize="678,5410" sap2010:WorkflowViewState.IdRef="Sequence_134">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="x:String" Name="OutUiElement" />
+                      </Sequence.Variables>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <uix:NSetRuntimeBrowser BrowserType="Chrome" DisplayName="Set Runtime Browser" sap:VirtualizedContainerService.HintSize="644,119" sap2010:WorkflowViewState.IdRef="NSetRuntimeBrowser_5" Version="V4" />
+                      <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome Neuer Tab" sap:VirtualizedContainerService.HintSize="644,5208" sap2010:WorkflowViewState.IdRef="NApplicationCard_9" InteractionMode="DebuggerApi" ScopeGuid="de9f95fe-af75-4014-8998-6f54e42180dd" Version="V2" WindowResize="Maximize">
+                        <uix:NApplicationCard.Body>
+                          <ActivityAction x:TypeArguments="x:Object">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                            </ActivityAction.Argument>
+                            <Sequence DisplayName="Ausführen" sap:VirtualizedContainerService.HintSize="610,4928" sap2010:WorkflowViewState.IdRef="Sequence_135">
+                              <Sequence.Variables>
+                                <Variable x:TypeArguments="ue:IReadWriteRangeRef" Name="Results" />
+                                <Variable x:TypeArguments="x:String" Name="cheapestItem" />
+                                <Variable x:TypeArguments="x:String" Name="cheapestCost" />
+                                <Variable x:TypeArguments="x:String" Name="cheapestURL">
+                                  <Variable.Default>
+                                    <Literal x:TypeArguments="x:String" Value="" />
+                                  </Variable.Default>
+                                </Variable>
+                              </Sequence.Variables>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <Delay Duration="00:00:04" sap:VirtualizedContainerService.HintSize="576,122" sap2010:WorkflowViewState.IdRef="Delay_16" />
+                              <uix:NGoToUrl DisplayName="Go To URL" sap:VirtualizedContainerService.HintSize="576,114" sap2010:WorkflowViewState.IdRef="NGoToUrl_7" Url="www.amazon.com" />
+                              <Delay Duration="00:00:04" sap:VirtualizedContainerService.HintSize="576,122" sap2010:WorkflowViewState.IdRef="Delay_17" />
+                              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'All'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="576,250" sap2010:WorkflowViewState.IdRef="NTypeInto_5" ScopeIdentifier="de9f95fe-af75-4014-8998-6f54e42180dd" Text="[refillName + &quot;[k(Enter)]&quot;]" Version="V4">
+                                <uix:NTypeInto.Target>
+                                  <uix:TargetAnchorable BrowserURL="amazon.de" CVScreenId="5ebfaa5f-d038-44be-b8ba-c0c362425c0f" ContentHash="6V0yqg216kOVIo_3ITYWKg" CvElementArea="349, 137, 1078, 42" CvType="InputBox" DesignTimeRectangle="356, 140, 1059, 38" DesignTimeScaleFactor="1" ElementType="InputBox" FuzzySelectorArgument="&lt;webctrl id='twotabsearchtextbox' tag='INPUT' type='text' class='nav-input nav-progressive-attribute' placeholder='Search Amazon.de' aaname='Search Amazon.de' /&gt;" Guid="bd4b6537-5ee5-47db-b59f-fd5011574570" InformativeScreenshot="c44d55d2f7cab3557aa783c51695dcaf.png" IsResponsive="True" Reference="itrJpdWr7Ee3YZjVAIn54A/gGauSJ-pgUyOyY-anFjnww" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Amazon.de: Low Prices in Electronics, Books, Sports Equipment &amp;amp; more' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive">
+                                    <uix:TargetAnchorable.Anchors>
+                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                        <uix:Target CVScreenId="5ebfaa5f-d038-44be-b8ba-c0c362425c0f" CvTextArea="314, 153, 17, 12" CvTextArgument="All" CvType="Text" DesignTimeRectangle="315, 143, 19, 33" ElementType="Text" FuzzySelectorArgument="&lt;webctrl id='nav-search-label-id' tag='SPAN' type='' class='nav-search-label nav-progressive-content' aaname='All' check:innerText='All' /&gt;" Guid="93ec3225-0028-454f-b074-42fa3b883ef8" SearchSteps="FuzzySelector, CV" />
+                                      </scg:List>
+                                    </uix:TargetAnchorable.Anchors>
+                                  </uix:TargetAnchorable>
+                                </uix:NTypeInto.Target>
+                              </uix:NTypeInto>
+                              <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="576,122" sap2010:WorkflowViewState.IdRef="Delay_18" />
+                              <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[ExtractDataTable]" DisplayName="Extract Table Data" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Structured' AddCvHeader='true' IsScrollEnabled='false'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column0' Name='Name'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column3' Name='URL'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;true&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column4' Name='Price'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;/row&gt;&lt;column exact='1' name='Column0' attr='fulltext' name2='Column3' attr2='href'&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;webctrl tag='h2' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column4' attr='fulltext'&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='4' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;webctrl tag='span' idx='2' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="576,189" sap2010:WorkflowViewState.IdRef="NExtractData_14" LimitExtractionTo="None" MaximumResults="0" ScopeIdentifier="de9f95fe-af75-4014-8998-6f54e42180dd" Version="V4">
+                                <uix:NExtractData.Target>
+                                  <uix:TargetAnchorable BrowserURL="https://www.amazon.de/s?k=Fu%C3%9Fball&amp;ref=nb_sb_noss" DesignTimeRectangle="363, -70, 1497, 10199" DesignTimeScaleFactor="1" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;span&amp;gt;div' parentid='search' tag='DIV' /&gt;" Guid="1ac884b0-73a5-4a0a-9c2e-2c418e18d5ca" InformativeScreenshot="2fdd93e831af7bc8c6b77ec63b7cfcca.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Amazon.de : Fußball' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
+                                </uix:NExtractData.Target>
+                              </uix:NExtractData>
+                              <Assign sap:VirtualizedContainerService.HintSize="576,114" sap2010:WorkflowViewState.IdRef="Assign_120">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[cheapestCost]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">999.99</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[ExtractDataTable]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="576,1654" sap2010:WorkflowViewState.IdRef="ForEachRow_6">
+                                <ui:ForEachRow.Body>
+                                  <ActivityAction x:TypeArguments="sd:DataRow">
+                                    <ActivityAction.Argument>
+                                      <DelegateInArgument x:TypeArguments="sd:DataRow" Name="currentRow" />
+                                    </ActivityAction.Argument>
+                                    <Sequence DisplayName="Text" sap:VirtualizedContainerService.HintSize="574,1474" sap2010:WorkflowViewState.IdRef="Sequence_136">
+                                      <Sequence.Variables>
+                                        <Variable x:TypeArguments="x:String" Name="currentPrice" />
+                                      </Sequence.Variables>
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <If Condition="[Not IsDBNull(currentItem(&quot;Price&quot;)) AndAlso currentItem(&quot;Price&quot;).ToString() &lt;&gt; &quot;&quot; AndAlso Not IsDBNull(currentItem(&quot;Name&quot;)) AndAlso Not IsDBNull(currentItem(&quot;URL&quot;))]" sap:VirtualizedContainerService.HintSize="540,1414" sap2010:WorkflowViewState.IdRef="If_37">
+                                        <If.Then>
+                                          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="538,1112" sap2010:WorkflowViewState.IdRef="Sequence_144">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <Assign sap:VirtualizedContainerService.HintSize="504,114" sap2010:WorkflowViewState.IdRef="Assign_130">
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:String">[currentPrice]</OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Replace(currentItem.item("Price").ToString, "[^0-9.,]", "")]</InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="504,122" sap2010:WorkflowViewState.IdRef="WriteLine_62" Text="[currentPrice.ToString]" />
+                                            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="504,122" sap2010:WorkflowViewState.IdRef="Delay_20" />
+                                            <If Condition="[Double.Parse(currentPrice) &lt; Double.Parse(cheapestCost)]" sap:VirtualizedContainerService.HintSize="504,694" sap2010:WorkflowViewState.IdRef="If_38">
+                                              <sap:WorkflowViewStateService.ViewState>
+                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                </scg:Dictionary>
+                                              </sap:WorkflowViewStateService.ViewState>
+                                              <If.Then>
+                                                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="502,476" sap2010:WorkflowViewState.IdRef="Sequence_146">
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                  <Sequence sap:VirtualizedContainerService.HintSize="468,416" sap2010:WorkflowViewState.IdRef="Sequence_148">
+                                                    <sap:WorkflowViewStateService.ViewState>
+                                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                      </scg:Dictionary>
+                                                    </sap:WorkflowViewStateService.ViewState>
+                                                    <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_131">
+                                                      <Assign.To>
+                                                        <OutArgument x:TypeArguments="x:String">[cheapestCost]</OutArgument>
+                                                      </Assign.To>
+                                                      <Assign.Value>
+                                                        <InArgument x:TypeArguments="x:String">[currentPrice]</InArgument>
+                                                      </Assign.Value>
+                                                    </Assign>
+                                                    <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_132">
+                                                      <Assign.To>
+                                                        <OutArgument x:TypeArguments="x:String">[cheapestItem]</OutArgument>
+                                                      </Assign.To>
+                                                      <Assign.Value>
+                                                        <InArgument x:TypeArguments="x:String">[currentItem.item("Name").ToString]</InArgument>
+                                                      </Assign.Value>
+                                                    </Assign>
+                                                    <Assign sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_133">
+                                                      <Assign.To>
+                                                        <OutArgument x:TypeArguments="x:String">[cheapestURL]</OutArgument>
+                                                      </Assign.To>
+                                                      <Assign.Value>
+                                                        <InArgument x:TypeArguments="x:String">[currentItem.item("URL").ToString]</InArgument>
+                                                      </Assign.Value>
+                                                    </Assign>
+                                                  </Sequence>
+                                                </Sequence>
+                                              </If.Then>
+                                              <If.Else>
+                                                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="502,89" sap2010:WorkflowViewState.IdRef="Sequence_147">
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                </Sequence>
+                                              </If.Else>
+                                            </If>
+                                          </Sequence>
+                                        </If.Then>
+                                        <If.Else>
+                                          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="538,173" sap2010:WorkflowViewState.IdRef="Sequence_145">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="504,113" sap2010:WorkflowViewState.IdRef="WriteLine_63" Text="Invalid item price: skipping row." />
+                                          </Sequence>
+                                        </If.Else>
+                                      </If>
+                                    </Sequence>
+                                  </ActivityAction>
+                                </ui:ForEachRow.Body>
+                              </ui:ForEachRow>
+                              <If Condition="[cheapestURL &lt;&gt; &quot;&quot; AndAlso cheapestCost &lt;&gt; &quot;&quot; AndAlso cheapestItem &lt;&gt; &quot;&quot;]" sap:VirtualizedContainerService.HintSize="576,2179" sap2010:WorkflowViewState.IdRef="If_35">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <If.Then>
+                                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="504,1959" sap2010:WorkflowViewState.IdRef="Sequence_137">
                                     <Sequence.Variables>
-                                      <Variable x:TypeArguments="x:String" Name="currentPrice" />
+                                      <Variable x:TypeArguments="x:Int32" Default="5" Name="loopFive" />
+                                      <Variable x:TypeArguments="x:String" Name="totalRefillCost" />
+                                      <Variable x:TypeArguments="s:String[]" Default="[{&quot;&quot;}]" Name="currentRefillOrder" />
                                     </Sequence.Variables>
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                       </scg:Dictionary>
                                     </sap:WorkflowViewStateService.ViewState>
-                                    <If Condition="[Not IsDBNull(currentRow(&quot;Price&quot;)) AndAlso currentRow(&quot;Price&quot;).ToString() &lt;&gt; &quot;&quot; AndAlso Not IsDBNull(currentRow(&quot;Name&quot;)) AndAlso Not IsDBNull(currentRow(&quot;URL&quot;))]" sap:VirtualizedContainerService.HintSize="540,1424" sap2010:WorkflowViewState.IdRef="If_29">
-                                      <If.Then>
-                                        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="538,1120" sap2010:WorkflowViewState.IdRef="Sequence_105">
+                                    <uix:NGoToUrl DisplayName="Go To URL" sap:VirtualizedContainerService.HintSize="470,114" sap2010:WorkflowViewState.IdRef="NGoToUrl_8" Url="[cheapestURL]" Version="V4" />
+                                    <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="470,122" sap2010:WorkflowViewState.IdRef="Delay_19" />
+                                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Add to basket(1)'" sap:VirtualizedContainerService.HintSize="470,225" sap2010:WorkflowViewState.IdRef="NClick_13" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="de9f95fe-af75-4014-8998-6f54e42180dd" Version="V4">
+                                      <uix:NClick.Target>
+                                        <uix:TargetAnchorable BrowserURL="amazon.de/Training-Football-Premium-Leather-Weather/dp/B0D8SYFRT4/ref=sr_1_1_sspa" CVScreenId="66f53c68-18a6-4005-90d3-e85fdeb20aa5" ContentHash="Iir5VVtiBE69vnjrCmBejA" CvElementArea="1461, 702, 217, 34" CvTextArea="1528, 712, 84, 13" CvTextArgument="Add to basket" CvType="Button" DesignTimeRectangle="1464, 705, 212, 29" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;webctrl id='add-to-cart-button' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl id='add-to-cart-button' tag='INPUT' type='submit' class='a-button-input' aaname='Add to Shopping Basket' check:text='Add to basket' /&gt;" Guid="b2884f11-ce4b-479c-b3ad-0443dda621cc" InformativeScreenshot="19f1c33ae8e7f3ed282cf16ec7649ad7.png" Reference="itrJpdWr7Ee3YZjVAIn54A/Ud5fGKg7Kk-zUYFfGxGLUw" ScopeSelectorArgument="&lt;html app='chrome.exe' htmlwindowname='https://m.media-amazon.com/images/I/11EIQ5IGqaL._RC%7C01ZTHTZObnL.css,51FIeTurRAL.css,31fFxDf00KL.css,11j2+ObrspL.css,01qDClimA1L.css,01pOTCa2wPL.css,413Vvv3GONL.css,11TIuySqr6L.css,01Rw4F+QU6L.css,11JJsNcqOIL.css,01J3raiFJrL.css,01IdKcBuAdL.css,014QJx7nWq*' title='U&amp;amp;C Planet Training Football Size 5 Youth Football Balls Premium PVC Leather Ball for Training &amp;amp; Games in All Weather : Amazon.de: Toys' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V4" Visibility="Interactive" />
+                                      </uix:NClick.Target>
+                                      <uix:NClick.VerifyOptions>
+                                        <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                                          <uix:VerifyExecutionOptions.Retry>
+                                            <InArgument x:TypeArguments="x:Boolean" />
+                                          </uix:VerifyExecutionOptions.Retry>
+                                          <uix:VerifyExecutionOptions.Timeout>
+                                            <InArgument x:TypeArguments="x:Double" />
+                                          </uix:VerifyExecutionOptions.Timeout>
+                                        </uix:VerifyExecutionOptions>
+                                      </uix:NClick.VerifyOptions>
+                                    </uix:NClick>
+                                    <Assign sap:VirtualizedContainerService.HintSize="470,114" sap2010:WorkflowViewState.IdRef="Assign_121">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:String">[totalRefillCost]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:String">[(Double.Parse(cheapestCost) * Double.Parse(refillAmount.ToString())).ToString()]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="470,57" sap2010:WorkflowViewState.IdRef="CommentOut_15">
+                                      <ui:CommentOut.Body>
+                                        <Sequence DisplayName="Ignorierte Aktivitäten" sap:VirtualizedContainerService.HintSize="468,165" sap2010:WorkflowViewState.IdRef="Sequence_141">
                                           <sap:WorkflowViewStateService.ViewState>
                                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                             </scg:Dictionary>
                                           </sap:WorkflowViewStateService.ViewState>
-                                          <Assign sap:VirtualizedContainerService.HintSize="504,115" sap2010:WorkflowViewState.IdRef="Assign_79">
+                                          <Assign sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_127">
                                             <Assign.To>
-                                              <OutArgument x:TypeArguments="x:String">[currentPrice]</OutArgument>
+                                              <OutArgument x:TypeArguments="s:String[]">[currentRefillOrder]</OutArgument>
                                             </Assign.To>
                                             <Assign.Value>
-                                              <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Replace(currentRow.item("Price").ToString, "[^0-9.,]", "")]</InArgument>
+                                              <InArgument x:TypeArguments="s:String[]">[currentRefillOrder.Append("Refilling " + refillName.ToString + " with: " + cheapestItem.ToString + ". Price per item: " + cheapestCost.ToString + ". Total cost: " + refillAmount.ToString() + " * " &amp; cheapestCost.ToString + " = " + totalRefillCost.ToString + ". Product URL: " + cheapestURL.ToString]</InArgument>
                                             </Assign.Value>
                                           </Assign>
-                                          <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="504,123" sap2010:WorkflowViewState.IdRef="WriteLine_44" Text="[currentPrice.ToString]" />
-                                          <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="504,123" sap2010:WorkflowViewState.IdRef="Delay_13" />
-                                          <If Condition="[Double.Parse(currentPrice) &lt; Double.Parse(cheapestCost)]" sap:VirtualizedContainerService.HintSize="504,699" sap2010:WorkflowViewState.IdRef="If_28">
-                                            <sap:WorkflowViewStateService.ViewState>
-                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                              </scg:Dictionary>
-                                            </sap:WorkflowViewStateService.ViewState>
-                                            <If.Then>
-                                              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="502,479" sap2010:WorkflowViewState.IdRef="Sequence_103">
-                                                <sap:WorkflowViewStateService.ViewState>
-                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                  </scg:Dictionary>
-                                                </sap:WorkflowViewStateService.ViewState>
-                                                <Sequence sap:VirtualizedContainerService.HintSize="468,419" sap2010:WorkflowViewState.IdRef="Sequence_102">
-                                                  <sap:WorkflowViewStateService.ViewState>
-                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                    </scg:Dictionary>
-                                                  </sap:WorkflowViewStateService.ViewState>
-                                                  <Assign sap:VirtualizedContainerService.HintSize="434,115" sap2010:WorkflowViewState.IdRef="Assign_80">
-                                                    <Assign.To>
-                                                      <OutArgument x:TypeArguments="x:String">[cheapestCost]</OutArgument>
-                                                    </Assign.To>
-                                                    <Assign.Value>
-                                                      <InArgument x:TypeArguments="x:String">[currentPrice]</InArgument>
-                                                    </Assign.Value>
-                                                  </Assign>
-                                                  <Assign sap:VirtualizedContainerService.HintSize="434,115" sap2010:WorkflowViewState.IdRef="Assign_81">
-                                                    <Assign.To>
-                                                      <OutArgument x:TypeArguments="x:String">[cheapestItem]</OutArgument>
-                                                    </Assign.To>
-                                                    <Assign.Value>
-                                                      <InArgument x:TypeArguments="x:String">[currentRow.item("Name").ToString]</InArgument>
-                                                    </Assign.Value>
-                                                  </Assign>
-                                                  <Assign sap:VirtualizedContainerService.HintSize="434,106" sap2010:WorkflowViewState.IdRef="Assign_82">
-                                                    <Assign.To>
-                                                      <OutArgument x:TypeArguments="x:String">[cheapestURL]</OutArgument>
-                                                    </Assign.To>
-                                                    <Assign.Value>
-                                                      <InArgument x:TypeArguments="x:String">[currentRow.item("URL").ToString]</InArgument>
-                                                    </Assign.Value>
-                                                  </Assign>
-                                                </Sequence>
-                                              </Sequence>
-                                            </If.Then>
-                                            <If.Else>
-                                              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="502,90" sap2010:WorkflowViewState.IdRef="Sequence_104">
-                                                <sap:WorkflowViewStateService.ViewState>
-                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                  </scg:Dictionary>
-                                                </sap:WorkflowViewStateService.ViewState>
-                                              </Sequence>
-                                            </If.Else>
-                                          </If>
+                                        </Sequence>
+                                      </ui:CommentOut.Body>
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </ui:CommentOut>
+                                    <Assign sap2010:Annotation.AnnotationText="Index 0: Name des Produkts" sap:VirtualizedContainerService.HintSize="470,145" sap2010:WorkflowViewState.IdRef="Assign_122">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="s:String[]">[currentRefillOrder]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="s:String[]">[currentRefillOrder.Append(cheapestItem.ToString).ToArray]</InArgument>
+                                      </Assign.Value>
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </Assign>
+                                    <Assign sap2010:Annotation.AnnotationText="Index 1: Preis des Produkts" sap:VirtualizedContainerService.HintSize="470,145" sap2010:WorkflowViewState.IdRef="Assign_123">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="s:String[]">[currentRefillOrder]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="s:String[]">[currentRefillOrder.Append(cheapestCost.ToString).ToArray]</InArgument>
+                                      </Assign.Value>
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </Assign>
+                                    <Assign sap2010:Annotation.AnnotationText="Index 2: Link zum Produkt" sap:VirtualizedContainerService.HintSize="470,145" sap2010:WorkflowViewState.IdRef="Assign_124">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="s:String[]">[currentRefillOrder]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="s:String[]">[currentRefillOrder.Append(cheapestURL.ToString).ToArray]</InArgument>
+                                      </Assign.Value>
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </Assign>
+                                    <If sap2010:Annotation.AnnotationText="Index 3 vom Array ist die Extrakosten für den Kunden, falls der Preis des Refill-Item teurer ist als der Preis von unserer Datenbank. &#xA;Falls der Preis des Refill-Items billiger ist, behalten wir das Geld für unser eigenen Profit." Condition="[CDbl(itemPrice) &lt; CDbl(cheapestCost)]" sap:VirtualizedContainerService.HintSize="470,540" sap2010:WorkflowViewState.IdRef="If_36">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <If.Then>
+                                        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="468,165" sap2010:WorkflowViewState.IdRef="Sequence_142">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <Assign sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_128">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="s:String[]">[currentRefillOrder]</OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="s:String[]">[currentRefillOrder.Append((CInt(stockDiscrepancy) * (CDbl(cheapestCost) - CDbl(itemPrice))).ToString).ToArray]</InArgument>
+                                            </Assign.Value>
+                                          </Assign>
                                         </Sequence>
                                       </If.Then>
                                       <If.Else>
-                                        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="538,174" sap2010:WorkflowViewState.IdRef="Sequence_106">
+                                        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="468,165" sap2010:WorkflowViewState.IdRef="Sequence_143">
                                           <sap:WorkflowViewStateService.ViewState>
                                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                             </scg:Dictionary>
                                           </sap:WorkflowViewStateService.ViewState>
-                                          <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="504,114" sap2010:WorkflowViewState.IdRef="WriteLine_41" Text="Invalid item price: skipping row." />
+                                          <Assign sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_129">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="s:String[]">[currentRefillOrder]</OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="s:String[]">[currentRefillOrder.Append("0.0").ToArray]</InArgument>
+                                            </Assign.Value>
+                                          </Assign>
                                         </Sequence>
                                       </If.Else>
                                     </If>
+                                    <Assign sap2010:Annotation.AnnotationText="Index 4: Totale Kosten der Bestellung zum Nachstocken" sap:VirtualizedContainerService.HintSize="470,145" sap2010:WorkflowViewState.IdRef="Assign_125">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="s:String[]">[currentRefillOrder]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="s:String[]">[currentRefillOrder.Append(totalRefillCost.ToString).ToArray]</InArgument>
+                                      </Assign.Value>
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </Assign>
+                                    <Assign sap2010:Annotation.AnnotationText="Hinzufügen des Arrays &quot;currentRefillOrder&quot; zur gesamten Bestellung &quot;refillOrder&quot;" sap:VirtualizedContainerService.HintSize="470,147" sap2010:WorkflowViewState.IdRef="Assign_126">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="s:String[][]">[refillOrder]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="s:String[][]">[refillOrder.Append(currentRefillorder.ToArray).ToArray]</InArgument>
+                                      </Assign.Value>
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </Assign>
                                   </Sequence>
-                                </ActivityAction>
-                              </ui:ForEachRow.Body>
-                            </ui:ForEachRow>
-                            <If Condition="[cheapestURL &lt;&gt; &quot;&quot; AndAlso cheapestCost &lt;&gt; &quot;&quot; AndAlso cheapestItem &lt;&gt; &quot;&quot;]" sap:VirtualizedContainerService.HintSize="576,2200" sap2010:WorkflowViewState.IdRef="If_31">
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                              <If.Then>
-                                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="504,1978" sap2010:WorkflowViewState.IdRef="Sequence_94">
+                                </If.Then>
+                                <If.Else>
+                                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="504,89" sap2010:WorkflowViewState.IdRef="Sequence_140">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                  </Sequence>
+                                </If.Else>
+                              </If>
+                            </Sequence>
+                          </ActivityAction>
+                        </uix:NApplicationCard.Body>
+                        <uix:NApplicationCard.TargetApp>
+                          <uix:TargetApp Area="-8, -8, 1936, 1048" BrowserType="Chrome" ContentHash="CgTpu6FRDUS8U4KnbFgVRw" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAbxSURBVFhHpZZtTFvnFcf9pWuypg3tmjVrGmLeEoMBG2PaJBDb2CkvyQJpvlXtFqRpmrSXT5s67a3pl0nTptXkhdAklEsCbZdG3VsrVe3AhhBCs3ZDi5ZAo21OA5hAOztNmrXhXj9n//M8j415SUe7I/30P+fh+vzPufcasC03YgF3zkzQ0zITrDLAyPshb3ImVEXTQS/NBDn3RmeClcZ0qHIvX6s/9v/HVIPbfjVU1com2kxcra2k6VovqBQM14sIVBpTAbddt/nsoTb2htlUGgWUWcYQ9dWAR0wFOPcgV8r1VMCj8AOfZ59uufzgyWES00a6sUfm8ww0cTZiuPZViLi/Qp1xrohNbV7m3ZiurXChUSzbIIO/QjDKUBlpE4r73BmdhE5ucys4V/X/HoI3h1EsvYFSjTaa9Kmm8W3aSDXPMJGmxkWTNS4BBaoer3ZhCMfSQ/Azh1FMGWU1z5ipxnIA1hq3kDUbaENlJHMxLmul49XljFDqii35LZnwucMZE4XI3khvo41Uzg1lzc1l7aIrOGO0KV3ZupAycWVLWVjbqnC/tNve/h3/nAmboqk2I7mNNpn57jfoxss9ZMYnKR3i5rskZl4la2QXWecqGcGaYn3LQ5JzHpx5BM5kTcNZ70PlS3uMbUYzjYUq1Fb6dknFxDKvr6YbJ3u0JVE8Kah/bBaYdGkqpU8xzNSLZL3jJ/OtChgxbgzhxjDQYbeqoajVXXAbu3M8LzxGzL4fBjO3io1Z39tSRuN1W+nWpTFp8JeYSd8yPqKqZ65R1T4N8qbwdYqOzsprxM0xst6ugZmLDZUOc85aDi3HEOVJGsG74H5hd4u7ZzdVANb+Jq80ZfCsBOv133TLxkein5AXhhmezso1R3ENh4h3K7PhMk1pljJOMXumpMXm7m42ALm6m4S7p1k8+Ys6ury5lN7b7BTMxGP1siFvV/l0UuLROse1eefv4C5xpC7sFdZZJ5lnS8hagtRwiWFzdTdHXScwwIkmTTO9useLIZwUe8RJN177nWy289kPqeJnyTlglNF0rutvdt6QnxFTJ4R5thhm2TgwlINS0NRQ8Yit/HhTsvz4LkpT1rWLth9spL/7yij2cIm4dWmUxuIWudF8MYnbkKTJJF7MTyZguBGGmiEJMSZInS1K2MqMr8JUImSu659/u5piVcWCN4lcnCXXTxNLA7P5dYLKoRH9QlpDRWSeKSSLQW4NaZV1gbCVdu6kUpiWGjuF1C6lj7Q30vkap2zSd/EWlaHpQtgoW7PP+zA0h3WmAEb5wjoDhgowTD7O5uABks7OHUKxk6BAqvjeUz5hxidoMpGi0p/8+zMxiscmProAkzwyB/Ogdgxhl7XKN3CdsJU8v+OvJR2NpNhBqGXuZH2+UQz2n5SbtHRcJycaO38MWD+Ful9dk59JTZ+CGRvlCnMwlyzJBrBecG4Oro/aHB0NRvGxRpqjQQ7gONYgOP/6a0/JZn/+1yyVwLwYKP1A5nP13HkvHhmH9fYWMk+vBw/B9CHBqnOyWE+vM2yOow0tIGPIyPpovQCsdPy8+ioe6rtJjh99QA6YSF0Izg/1/kdee228E4brYLYO2z6I/EGYK6y0Dqzba7MbgZziI/XJTUfqKRsH69E6wXi79ojR9/8hG//pwi0K/jJJm2CYzdeOfUjn/qlevInEu5QYLCFz4CuatTBdK9JqnX5A5hTNUX+WNz1X37rpuTraqJH5kTqRroHwGntE1/nfSgOOi5OWHIaZwEuaDr6m849bsN1aGD+QwWLt/7JUa2CNsPrXGNKcw9HeYN/Y/igxRVrTeRaisH27CPQ8Sa+MvkEX9R3hGL9+lYy/vUJP/P4H5O/wwWiNYkBr//0ytwbuFzIH2H7+f0ZFbaHWosPbKU1hG+ujxKaFhyWkNCT4ZxldwKk/FMHkS8pU6n3YVipZyFlTA/ct/k/ZHg7kFBwOxQraVOOCQyEqBKx8JpXP2ubX2Tze9TDM7hVm9F4YAlaAM605wormxLTl4sAQ9oK2YCzdMP9gkApA/qGgkHCu66XOL7+JZxxdjQHuAathuBqGUNSa2KJbvzB4iPwDtTHZ9EAt5R2sFQznafJY8XNWmR8I0ve7y8mM3I1N71EKrOgqmK4SnM9G7ob5ik83TwcPkbe/NgbIfiAg8vYHpMochvb9Kk9T076VLr+B5xxZxabQu+ZhRe6Kfbxc8+zAIM/YW2F+W/wYxi86Xs4ns28ljL4oMSMrBNdmBPStDGe+758n+G7khv3GhrCfNrT6Re6zPsF5btgn6+q2zTBZobmTzF4QuTNp9q5s/fj1z7H17QKD5Kz/9bYWDNCFAaLQJKCTp/A7PXJHItX7hZFU7wpjtu+OluVvbLP9F5lmWAkTeM7rAAAAAElFTkSuQmCC" InformativeScreenshot="e98c96878b60a806e90e1f9cf1705501.png" Reference="itrJpdWr7Ee3YZjVAIn54A/dkvnMsLGak6kIa4jJ61TNw" Selector="&lt;html app='chrome.exe' title='Neuer Tab' /&gt;" Title="Neuer Tab" Url="chrome://newtab/" Version="V1" />
+                        </uix:NApplicationCard.TargetApp>
+                      </uix:NApplicationCard>
+                    </Sequence>
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence sap2010:Annotation.AnnotationText="Wir haben keine Bestellung nötig" DisplayName="Else" sap:VirtualizedContainerService.HintSize="712,483" sap2010:WorkflowViewState.IdRef="Sequence_138">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:String" Name="updateResult" />
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Assign sap:VirtualizedContainerService.HintSize="678,114" sap2010:WorkflowViewState.IdRef="Assign_119">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Int32">[newStockCount]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Int32">[itemCount - orderAmount]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ws:ExecuteNonQuery DatabasePath="{x:Null}" Connection="[database]" DisplayName="Execute non query" sap:VirtualizedContainerService.HintSize="678,165" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_5" SQLCommand="[&quot;UPDATE 'Item Stock' SET Count = '&quot; + newStockCount.ToString + &quot;' WHERE Name = '&quot; + itemName + &quot;'&quot;]" />
+                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="678,113" sap2010:WorkflowViewState.IdRef="WriteLine_61" Text="No refilling of stock needed! Item count is greather than order amount." />
+                  </Sequence>
+                </If.Else>
+              </If>
+            </Sequence>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEachRow.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ForEachRow>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="784,57" sap2010:WorkflowViewState.IdRef="CommentOut_16">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignorierte Aktivitäten" sap:VirtualizedContainerService.HintSize="450,108" sap2010:WorkflowViewState.IdRef="Sequence_150">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:ForEach x:TypeArguments="s:String[]" CurrentIndex="{x:Null}" DisplayName="For Each item in customer Order" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="ForEach`1_12" Values="[customerOrder]">
+            <ui:ForEach.Body>
+              <ActivityAction x:TypeArguments="s:String[]">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="s:String[]" Name="currentItem" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Hauptteil" sap:VirtualizedContainerService.HintSize="748,7444" sap2010:WorkflowViewState.IdRef="Sequence_84">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Assign sap:VirtualizedContainerService.HintSize="714,114" sap2010:WorkflowViewState.IdRef="Assign_95">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[itemName]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[currentItem(0).ToString]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign sap:VirtualizedContainerService.HintSize="714,114" sap2010:WorkflowViewState.IdRef="Assign_97">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Int32">[orderAmount]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Int32">[Convert.toInt32(currentItem(1).ToString)]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="714,122" sap2010:WorkflowViewState.IdRef="WriteLine_50" Text="[&quot;Name: &quot; + itemName + &quot; - Amount: &quot; + orderAmount.ToString]" />
+                  <ws:ExecuteQuery DatabasePath="{x:Null}" Connection="[database]" DisplayName="Get Info of item from DB" sap:VirtualizedContainerService.HintSize="714,218" sap2010:WorkflowViewState.IdRef="ExecuteQuery_4" QueryResult="[itemTable]" SQLCommand="[&quot;SELECT * FROM 'Item Stock' WHERE Name = '&quot; + itemName + &quot;'&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ws:ExecuteQuery>
+                  <Assign sap:VirtualizedContainerService.HintSize="714,114" sap2010:WorkflowViewState.IdRef="Assign_92">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Int32">[itemCount]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Int32">[CInt(itemTable.Rows(0)("Count"))]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <If sap2010:Annotation.AnnotationText="Wir schauen, ob das Produkt nachbestellt werden muss" Condition="[itemCount &lt; orderAmount]" sap:VirtualizedContainerService.HintSize="714,6702" sap2010:WorkflowViewState.IdRef="If_24">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="712,6059" sap2010:WorkflowViewState.IdRef="Sequence_90">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="x:String" Name="stockDiscrepancy" />
+                        </Sequence.Variables>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Assign sap:VirtualizedContainerService.HintSize="678,114" sap2010:WorkflowViewState.IdRef="Assign_93">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Int32">[refillAmount]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Int32">[orderAmount - itemCount + 1]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap:VirtualizedContainerService.HintSize="678,114" sap2010:WorkflowViewState.IdRef="Assign_99">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Int32">[newStockCount]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Int32">[refillAmount + itemCount - orderAmount]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <ws:ExecuteNonQuery DatabasePath="{x:Null}" Connection="[database]" DisplayName="Execute non query" sap:VirtualizedContainerService.HintSize="678,165" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_3" SQLCommand="[&quot;UPDATE 'Item Stock' SET Count = '&quot; + newStockCount.ToString + &quot;' WHERE Name = '&quot; + itemName + &quot;'&quot;]" />
+                        <Assign sap:VirtualizedContainerService.HintSize="678,114" sap2010:WorkflowViewState.IdRef="Assign_94">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[refillName]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">[itemName.ToString]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="678,122" sap2010:WorkflowViewState.IdRef="WriteLine_39" Text="[&quot;Refill amount: &quot; + refillAmount.ToString + &quot; for &quot; + refillName]" />
+                        <Sequence sap:VirtualizedContainerService.HintSize="678,5370" sap2010:WorkflowViewState.IdRef="Sequence_91">
+                          <Sequence.Variables>
+                            <Variable x:TypeArguments="x:String" Name="OutUiElement" />
+                          </Sequence.Variables>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <uix:NSetRuntimeBrowser BrowserType="Chrome" DisplayName="Set Runtime Browser" sap:VirtualizedContainerService.HintSize="644,119" sap2010:WorkflowViewState.IdRef="NSetRuntimeBrowser_4" Version="V4" />
+                          <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome Neuer Tab" sap:VirtualizedContainerService.HintSize="644,5168" sap2010:WorkflowViewState.IdRef="NApplicationCard_8" InteractionMode="DebuggerApi" ScopeGuid="de9f95fe-af75-4014-8998-6f54e42180dd" Version="V2" WindowResize="Maximize">
+                            <uix:NApplicationCard.Body>
+                              <ActivityAction x:TypeArguments="x:Object">
+                                <ActivityAction.Argument>
+                                  <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                                </ActivityAction.Argument>
+                                <Sequence DisplayName="Ausführen" sap:VirtualizedContainerService.HintSize="610,4928" sap2010:WorkflowViewState.IdRef="Sequence_92">
                                   <Sequence.Variables>
-                                    <Variable x:TypeArguments="x:Int32" Default="5" Name="loopFive" />
-                                    <Variable x:TypeArguments="x:String" Name="totalRefillCost" />
-                                    <Variable x:TypeArguments="s:String[]" Default="[{&quot;&quot;}]" Name="currentRefillOrder" />
+                                    <Variable x:TypeArguments="ue:IReadWriteRangeRef" Name="Results" />
+                                    <Variable x:TypeArguments="x:String" Name="cheapestItem" />
+                                    <Variable x:TypeArguments="x:String" Name="cheapestCost" />
+                                    <Variable x:TypeArguments="x:String" Name="cheapestURL">
+                                      <Variable.Default>
+                                        <Literal x:TypeArguments="x:String" Value="" />
+                                      </Variable.Default>
+                                    </Variable>
                                   </Sequence.Variables>
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
-                                  <uix:NGoToUrl DisplayName="Go To URL" sap:VirtualizedContainerService.HintSize="470,115" sap2010:WorkflowViewState.IdRef="NGoToUrl_6" Url="[cheapestURL]" Version="V4" />
-                                  <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="470,123" sap2010:WorkflowViewState.IdRef="Delay_14" />
-                                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Add to basket(1)'" sap:VirtualizedContainerService.HintSize="470,227" sap2010:WorkflowViewState.IdRef="NClick_12" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="de9f95fe-af75-4014-8998-6f54e42180dd" Version="V4">
-                                    <uix:NClick.Target>
-                                      <uix:TargetAnchorable BrowserURL="amazon.de/Training-Football-Premium-Leather-Weather/dp/B0D8SYFRT4/ref=sr_1_1_sspa" CVScreenId="66f53c68-18a6-4005-90d3-e85fdeb20aa5" ContentHash="Iir5VVtiBE69vnjrCmBejA" CvElementArea="1461, 702, 217, 34" CvTextArea="1528, 712, 84, 13" CvTextArgument="Add to basket" CvType="Button" DesignTimeRectangle="1464, 705, 212, 29" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;webctrl id='add-to-cart-button' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl id='add-to-cart-button' tag='INPUT' type='submit' class='a-button-input' aaname='Add to Shopping Basket' check:text='Add to basket' /&gt;" Guid="b2884f11-ce4b-479c-b3ad-0443dda621cc" InformativeScreenshot="19f1c33ae8e7f3ed282cf16ec7649ad7.png" Reference="itrJpdWr7Ee3YZjVAIn54A/Ud5fGKg7Kk-zUYFfGxGLUw" ScopeSelectorArgument="&lt;html app='chrome.exe' htmlwindowname='https://m.media-amazon.com/images/I/11EIQ5IGqaL._RC%7C01ZTHTZObnL.css,51FIeTurRAL.css,31fFxDf00KL.css,11j2+ObrspL.css,01qDClimA1L.css,01pOTCa2wPL.css,413Vvv3GONL.css,11TIuySqr6L.css,01Rw4F+QU6L.css,11JJsNcqOIL.css,01J3raiFJrL.css,01IdKcBuAdL.css,014QJx7nWq*' title='U&amp;amp;C Planet Training Football Size 5 Youth Football Balls Premium PVC Leather Ball for Training &amp;amp; Games in All Weather : Amazon.de: Toys' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V4" Visibility="Interactive" />
-                                    </uix:NClick.Target>
-                                    <uix:NClick.VerifyOptions>
-                                      <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
-                                        <uix:VerifyExecutionOptions.Retry>
-                                          <InArgument x:TypeArguments="x:Boolean" />
-                                        </uix:VerifyExecutionOptions.Retry>
-                                        <uix:VerifyExecutionOptions.Timeout>
-                                          <InArgument x:TypeArguments="x:Double" />
-                                        </uix:VerifyExecutionOptions.Timeout>
-                                      </uix:VerifyExecutionOptions>
-                                    </uix:NClick.VerifyOptions>
-                                  </uix:NClick>
-                                  <Assign sap:VirtualizedContainerService.HintSize="470,115" sap2010:WorkflowViewState.IdRef="Assign_83">
+                                  <Delay Duration="00:00:04" sap:VirtualizedContainerService.HintSize="576,122" sap2010:WorkflowViewState.IdRef="Delay_15" />
+                                  <uix:NGoToUrl DisplayName="Go To URL" sap:VirtualizedContainerService.HintSize="576,114" sap2010:WorkflowViewState.IdRef="NGoToUrl_5" Url="www.amazon.com" />
+                                  <Delay Duration="00:00:04" sap:VirtualizedContainerService.HintSize="576,122" sap2010:WorkflowViewState.IdRef="Delay_11" />
+                                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'All'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="576,250" sap2010:WorkflowViewState.IdRef="NTypeInto_4" ScopeIdentifier="de9f95fe-af75-4014-8998-6f54e42180dd" Text="[refillName + &quot;[k(Enter)]&quot;]" Version="V4">
+                                    <uix:NTypeInto.Target>
+                                      <uix:TargetAnchorable BrowserURL="amazon.de" CVScreenId="5ebfaa5f-d038-44be-b8ba-c0c362425c0f" ContentHash="6V0yqg216kOVIo_3ITYWKg" CvElementArea="349, 137, 1078, 42" CvType="InputBox" DesignTimeRectangle="356, 140, 1059, 38" DesignTimeScaleFactor="1" ElementType="InputBox" FuzzySelectorArgument="&lt;webctrl id='twotabsearchtextbox' tag='INPUT' type='text' class='nav-input nav-progressive-attribute' placeholder='Search Amazon.de' aaname='Search Amazon.de' /&gt;" Guid="bd4b6537-5ee5-47db-b59f-fd5011574570" InformativeScreenshot="c44d55d2f7cab3557aa783c51695dcaf.png" IsResponsive="True" Reference="itrJpdWr7Ee3YZjVAIn54A/gGauSJ-pgUyOyY-anFjnww" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Amazon.de: Low Prices in Electronics, Books, Sports Equipment &amp;amp; more' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive">
+                                        <uix:TargetAnchorable.Anchors>
+                                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                            <uix:Target CVScreenId="5ebfaa5f-d038-44be-b8ba-c0c362425c0f" CvTextArea="314, 153, 17, 12" CvTextArgument="All" CvType="Text" DesignTimeRectangle="315, 143, 19, 33" ElementType="Text" FuzzySelectorArgument="&lt;webctrl id='nav-search-label-id' tag='SPAN' type='' class='nav-search-label nav-progressive-content' aaname='All' check:innerText='All' /&gt;" Guid="93ec3225-0028-454f-b074-42fa3b883ef8" SearchSteps="FuzzySelector, CV" />
+                                          </scg:List>
+                                        </uix:TargetAnchorable.Anchors>
+                                      </uix:TargetAnchorable>
+                                    </uix:NTypeInto.Target>
+                                  </uix:NTypeInto>
+                                  <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="576,122" sap2010:WorkflowViewState.IdRef="Delay_12" />
+                                  <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[ExtractDataTable]" DisplayName="Extract Table Data" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Structured' AddCvHeader='true' IsScrollEnabled='false'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column0' Name='Name'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column3' Name='URL'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;true&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column4' Name='Price'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;/row&gt;&lt;column exact='1' name='Column0' attr='fulltext' name2='Column3' attr2='href'&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;webctrl tag='h2' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column4' attr='fulltext'&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='4' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;webctrl tag='span' idx='2' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="576,189" sap2010:WorkflowViewState.IdRef="NExtractData_13" LimitExtractionTo="None" MaximumResults="0" ScopeIdentifier="de9f95fe-af75-4014-8998-6f54e42180dd" Version="V4">
+                                    <uix:NExtractData.Target>
+                                      <uix:TargetAnchorable BrowserURL="https://www.amazon.de/s?k=Fu%C3%9Fball&amp;ref=nb_sb_noss" DesignTimeRectangle="363, -70, 1497, 10199" DesignTimeScaleFactor="1" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;span&amp;gt;div' parentid='search' tag='DIV' /&gt;" Guid="1ac884b0-73a5-4a0a-9c2e-2c418e18d5ca" InformativeScreenshot="2fdd93e831af7bc8c6b77ec63b7cfcca.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Amazon.de : Fußball' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
+                                    </uix:NExtractData.Target>
+                                  </uix:NExtractData>
+                                  <Assign sap:VirtualizedContainerService.HintSize="576,114" sap2010:WorkflowViewState.IdRef="Assign_78">
                                     <Assign.To>
-                                      <OutArgument x:TypeArguments="x:String">[totalRefillCost]</OutArgument>
+                                      <OutArgument x:TypeArguments="x:String">[cheapestCost]</OutArgument>
                                     </Assign.To>
                                     <Assign.Value>
-                                      <InArgument x:TypeArguments="x:String">[(Double.Parse(cheapestCost) * Double.Parse(refillAmount.ToString())).ToString()]</InArgument>
+                                      <InArgument x:TypeArguments="x:String">999.99</InArgument>
                                     </Assign.Value>
                                   </Assign>
-                                  <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="470,57" sap2010:WorkflowViewState.IdRef="CommentOut_8">
-                                    <ui:CommentOut.Body>
-                                      <Sequence DisplayName="Ignorierte Aktivitäten" sap:VirtualizedContainerService.HintSize="468,166" sap2010:WorkflowViewState.IdRef="Sequence_107">
-                                        <sap:WorkflowViewStateService.ViewState>
-                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                          </scg:Dictionary>
-                                        </sap:WorkflowViewStateService.ViewState>
-                                        <Assign sap:VirtualizedContainerService.HintSize="434,106" sap2010:WorkflowViewState.IdRef="Assign_84">
-                                          <Assign.To>
-                                            <OutArgument x:TypeArguments="s:String[]">[currentRefillOrder]</OutArgument>
-                                          </Assign.To>
-                                          <Assign.Value>
-                                            <InArgument x:TypeArguments="s:String[]">[currentRefillOrder.Append("Refilling " + refillName.ToString + " with: " + cheapestItem.ToString + ". Price per item: " + cheapestCost.ToString + ". Total cost: " + refillAmount.ToString() + " * " &amp; cheapestCost.ToString + " = " + totalRefillCost.ToString + ". Product URL: " + cheapestURL.ToString]</InArgument>
-                                          </Assign.Value>
-                                        </Assign>
-                                      </Sequence>
-                                    </ui:CommentOut.Body>
+                                  <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[ExtractDataTable]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="576,1654" sap2010:WorkflowViewState.IdRef="ForEachRow_4">
+                                    <ui:ForEachRow.Body>
+                                      <ActivityAction x:TypeArguments="sd:DataRow">
+                                        <ActivityAction.Argument>
+                                          <DelegateInArgument x:TypeArguments="sd:DataRow" Name="currentRow" />
+                                        </ActivityAction.Argument>
+                                        <Sequence DisplayName="Text" sap:VirtualizedContainerService.HintSize="574,1474" sap2010:WorkflowViewState.IdRef="Sequence_93">
+                                          <Sequence.Variables>
+                                            <Variable x:TypeArguments="x:String" Name="currentPrice" />
+                                          </Sequence.Variables>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <If Condition="[Not IsDBNull(currentRow(&quot;Price&quot;)) AndAlso currentRow(&quot;Price&quot;).ToString() &lt;&gt; &quot;&quot; AndAlso Not IsDBNull(currentRow(&quot;Name&quot;)) AndAlso Not IsDBNull(currentRow(&quot;URL&quot;))]" sap:VirtualizedContainerService.HintSize="540,1414" sap2010:WorkflowViewState.IdRef="If_29">
+                                            <If.Then>
+                                              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="538,1112" sap2010:WorkflowViewState.IdRef="Sequence_105">
+                                                <sap:WorkflowViewStateService.ViewState>
+                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                  </scg:Dictionary>
+                                                </sap:WorkflowViewStateService.ViewState>
+                                                <Assign sap:VirtualizedContainerService.HintSize="504,114" sap2010:WorkflowViewState.IdRef="Assign_79">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="x:String">[currentPrice]</OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Replace(currentRow.item("Price").ToString, "[^0-9.,]", "")]</InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                                <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="504,122" sap2010:WorkflowViewState.IdRef="WriteLine_44" Text="[currentPrice.ToString]" />
+                                                <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="504,122" sap2010:WorkflowViewState.IdRef="Delay_13" />
+                                                <If Condition="[Double.Parse(currentPrice) &lt; Double.Parse(cheapestCost)]" sap:VirtualizedContainerService.HintSize="504,694" sap2010:WorkflowViewState.IdRef="If_28">
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                  <If.Then>
+                                                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="502,476" sap2010:WorkflowViewState.IdRef="Sequence_103">
+                                                      <sap:WorkflowViewStateService.ViewState>
+                                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                        </scg:Dictionary>
+                                                      </sap:WorkflowViewStateService.ViewState>
+                                                      <Sequence sap:VirtualizedContainerService.HintSize="468,416" sap2010:WorkflowViewState.IdRef="Sequence_102">
+                                                        <sap:WorkflowViewStateService.ViewState>
+                                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                          </scg:Dictionary>
+                                                        </sap:WorkflowViewStateService.ViewState>
+                                                        <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_80">
+                                                          <Assign.To>
+                                                            <OutArgument x:TypeArguments="x:String">[cheapestCost]</OutArgument>
+                                                          </Assign.To>
+                                                          <Assign.Value>
+                                                            <InArgument x:TypeArguments="x:String">[currentPrice]</InArgument>
+                                                          </Assign.Value>
+                                                        </Assign>
+                                                        <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_81">
+                                                          <Assign.To>
+                                                            <OutArgument x:TypeArguments="x:String">[cheapestItem]</OutArgument>
+                                                          </Assign.To>
+                                                          <Assign.Value>
+                                                            <InArgument x:TypeArguments="x:String">[currentRow.item("Name").ToString]</InArgument>
+                                                          </Assign.Value>
+                                                        </Assign>
+                                                        <Assign sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_82">
+                                                          <Assign.To>
+                                                            <OutArgument x:TypeArguments="x:String">[cheapestURL]</OutArgument>
+                                                          </Assign.To>
+                                                          <Assign.Value>
+                                                            <InArgument x:TypeArguments="x:String">[currentRow.item("URL").ToString]</InArgument>
+                                                          </Assign.Value>
+                                                        </Assign>
+                                                      </Sequence>
+                                                    </Sequence>
+                                                  </If.Then>
+                                                  <If.Else>
+                                                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="502,89" sap2010:WorkflowViewState.IdRef="Sequence_104">
+                                                      <sap:WorkflowViewStateService.ViewState>
+                                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                        </scg:Dictionary>
+                                                      </sap:WorkflowViewStateService.ViewState>
+                                                    </Sequence>
+                                                  </If.Else>
+                                                </If>
+                                              </Sequence>
+                                            </If.Then>
+                                            <If.Else>
+                                              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="538,173" sap2010:WorkflowViewState.IdRef="Sequence_106">
+                                                <sap:WorkflowViewStateService.ViewState>
+                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                  </scg:Dictionary>
+                                                </sap:WorkflowViewStateService.ViewState>
+                                                <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="504,113" sap2010:WorkflowViewState.IdRef="WriteLine_41" Text="Invalid item price: skipping row." />
+                                              </Sequence>
+                                            </If.Else>
+                                          </If>
+                                        </Sequence>
+                                      </ActivityAction>
+                                    </ui:ForEachRow.Body>
+                                  </ui:ForEachRow>
+                                  <If Condition="[cheapestURL &lt;&gt; &quot;&quot; AndAlso cheapestCost &lt;&gt; &quot;&quot; AndAlso cheapestItem &lt;&gt; &quot;&quot;]" sap:VirtualizedContainerService.HintSize="576,2179" sap2010:WorkflowViewState.IdRef="If_31">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                       </scg:Dictionary>
                                     </sap:WorkflowViewStateService.ViewState>
-                                  </ui:CommentOut>
-                                  <Assign sap2010:Annotation.AnnotationText="Index 0: Name des Produkts" sap:VirtualizedContainerService.HintSize="470,146" sap2010:WorkflowViewState.IdRef="Assign_85">
-                                    <Assign.To>
-                                      <OutArgument x:TypeArguments="s:String[]">[currentRefillOrder]</OutArgument>
-                                    </Assign.To>
-                                    <Assign.Value>
-                                      <InArgument x:TypeArguments="s:String[]">[currentRefillOrder.Append(cheapestItem.ToString).ToArray]</InArgument>
-                                    </Assign.Value>
-                                    <sap:WorkflowViewStateService.ViewState>
-                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                                      </scg:Dictionary>
-                                    </sap:WorkflowViewStateService.ViewState>
-                                  </Assign>
-                                  <Assign sap2010:Annotation.AnnotationText="Index 1: Preis des Produkts" sap:VirtualizedContainerService.HintSize="470,146" sap2010:WorkflowViewState.IdRef="Assign_86">
-                                    <Assign.To>
-                                      <OutArgument x:TypeArguments="s:String[]">[currentRefillOrder]</OutArgument>
-                                    </Assign.To>
-                                    <Assign.Value>
-                                      <InArgument x:TypeArguments="s:String[]">[currentRefillOrder.Append(cheapestCost.ToString).ToArray]</InArgument>
-                                    </Assign.Value>
-                                    <sap:WorkflowViewStateService.ViewState>
-                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                                      </scg:Dictionary>
-                                    </sap:WorkflowViewStateService.ViewState>
-                                  </Assign>
-                                  <Assign sap2010:Annotation.AnnotationText="Index 2: Link zum Produkt" sap:VirtualizedContainerService.HintSize="470,146" sap2010:WorkflowViewState.IdRef="Assign_87">
-                                    <Assign.To>
-                                      <OutArgument x:TypeArguments="s:String[]">[currentRefillOrder]</OutArgument>
-                                    </Assign.To>
-                                    <Assign.Value>
-                                      <InArgument x:TypeArguments="s:String[]">[currentRefillOrder.Append(cheapestURL.ToString).ToArray]</InArgument>
-                                    </Assign.Value>
-                                    <sap:WorkflowViewStateService.ViewState>
-                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                                      </scg:Dictionary>
-                                    </sap:WorkflowViewStateService.ViewState>
-                                  </Assign>
-                                  <If sap2010:Annotation.AnnotationText="Index 3 vom Array ist die Extrakosten für den Kunden, falls der Preis des Refill-Item teurer ist als der Preis von unserer Datenbank. &#xA;Falls der Preis des Refill-Items billiger ist, behalten wir das Geld für unser eigenen Profit." Condition="[CDbl(itemPrice) &lt; CDbl(cheapestCost)]" sap:VirtualizedContainerService.HintSize="470,547" sap2010:WorkflowViewState.IdRef="If_30">
-                                    <sap:WorkflowViewStateService.ViewState>
-                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                                      </scg:Dictionary>
-                                    </sap:WorkflowViewStateService.ViewState>
                                     <If.Then>
-                                      <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="468,166" sap2010:WorkflowViewState.IdRef="Sequence_108">
+                                      <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="504,1959" sap2010:WorkflowViewState.IdRef="Sequence_94">
+                                        <Sequence.Variables>
+                                          <Variable x:TypeArguments="x:Int32" Default="5" Name="loopFive" />
+                                          <Variable x:TypeArguments="x:String" Name="totalRefillCost" />
+                                          <Variable x:TypeArguments="s:String[]" Default="[{&quot;&quot;}]" Name="currentRefillOrder" />
+                                        </Sequence.Variables>
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                           </scg:Dictionary>
                                         </sap:WorkflowViewStateService.ViewState>
-                                        <Assign sap:VirtualizedContainerService.HintSize="434,106" sap2010:WorkflowViewState.IdRef="Assign_88">
+                                        <uix:NGoToUrl DisplayName="Go To URL" sap:VirtualizedContainerService.HintSize="470,114" sap2010:WorkflowViewState.IdRef="NGoToUrl_6" Url="[cheapestURL]" Version="V4" />
+                                        <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="470,122" sap2010:WorkflowViewState.IdRef="Delay_14" />
+                                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Add to basket(1)'" sap:VirtualizedContainerService.HintSize="470,225" sap2010:WorkflowViewState.IdRef="NClick_12" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="de9f95fe-af75-4014-8998-6f54e42180dd" Version="V4">
+                                          <uix:NClick.Target>
+                                            <uix:TargetAnchorable BrowserURL="amazon.de/Training-Football-Premium-Leather-Weather/dp/B0D8SYFRT4/ref=sr_1_1_sspa" CVScreenId="66f53c68-18a6-4005-90d3-e85fdeb20aa5" ContentHash="Iir5VVtiBE69vnjrCmBejA" CvElementArea="1461, 702, 217, 34" CvTextArea="1528, 712, 84, 13" CvTextArgument="Add to basket" CvType="Button" DesignTimeRectangle="1464, 705, 212, 29" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;webctrl id='add-to-cart-button' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl id='add-to-cart-button' tag='INPUT' type='submit' class='a-button-input' aaname='Add to Shopping Basket' check:text='Add to basket' /&gt;" Guid="b2884f11-ce4b-479c-b3ad-0443dda621cc" InformativeScreenshot="19f1c33ae8e7f3ed282cf16ec7649ad7.png" Reference="itrJpdWr7Ee3YZjVAIn54A/Ud5fGKg7Kk-zUYFfGxGLUw" ScopeSelectorArgument="&lt;html app='chrome.exe' htmlwindowname='https://m.media-amazon.com/images/I/11EIQ5IGqaL._RC%7C01ZTHTZObnL.css,51FIeTurRAL.css,31fFxDf00KL.css,11j2+ObrspL.css,01qDClimA1L.css,01pOTCa2wPL.css,413Vvv3GONL.css,11TIuySqr6L.css,01Rw4F+QU6L.css,11JJsNcqOIL.css,01J3raiFJrL.css,01IdKcBuAdL.css,014QJx7nWq*' title='U&amp;amp;C Planet Training Football Size 5 Youth Football Balls Premium PVC Leather Ball for Training &amp;amp; Games in All Weather : Amazon.de: Toys' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V4" Visibility="Interactive" />
+                                          </uix:NClick.Target>
+                                          <uix:NClick.VerifyOptions>
+                                            <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                                              <uix:VerifyExecutionOptions.Retry>
+                                                <InArgument x:TypeArguments="x:Boolean" />
+                                              </uix:VerifyExecutionOptions.Retry>
+                                              <uix:VerifyExecutionOptions.Timeout>
+                                                <InArgument x:TypeArguments="x:Double" />
+                                              </uix:VerifyExecutionOptions.Timeout>
+                                            </uix:VerifyExecutionOptions>
+                                          </uix:NClick.VerifyOptions>
+                                        </uix:NClick>
+                                        <Assign sap:VirtualizedContainerService.HintSize="470,114" sap2010:WorkflowViewState.IdRef="Assign_83">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:String">[totalRefillCost]</OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:String">[(Double.Parse(cheapestCost) * Double.Parse(refillAmount.ToString())).ToString()]</InArgument>
+                                          </Assign.Value>
+                                        </Assign>
+                                        <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="470,57" sap2010:WorkflowViewState.IdRef="CommentOut_8">
+                                          <ui:CommentOut.Body>
+                                            <Sequence DisplayName="Ignorierte Aktivitäten" sap:VirtualizedContainerService.HintSize="468,165" sap2010:WorkflowViewState.IdRef="Sequence_107">
+                                              <sap:WorkflowViewStateService.ViewState>
+                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                </scg:Dictionary>
+                                              </sap:WorkflowViewStateService.ViewState>
+                                              <Assign sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_84">
+                                                <Assign.To>
+                                                  <OutArgument x:TypeArguments="s:String[]">[currentRefillOrder]</OutArgument>
+                                                </Assign.To>
+                                                <Assign.Value>
+                                                  <InArgument x:TypeArguments="s:String[]">[currentRefillOrder.Append("Refilling " + refillName.ToString + " with: " + cheapestItem.ToString + ". Price per item: " + cheapestCost.ToString + ". Total cost: " + refillAmount.ToString() + " * " &amp; cheapestCost.ToString + " = " + totalRefillCost.ToString + ". Product URL: " + cheapestURL.ToString]</InArgument>
+                                                </Assign.Value>
+                                              </Assign>
+                                            </Sequence>
+                                          </ui:CommentOut.Body>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </ui:CommentOut>
+                                        <Assign sap2010:Annotation.AnnotationText="Index 0: Name des Produkts" sap:VirtualizedContainerService.HintSize="470,145" sap2010:WorkflowViewState.IdRef="Assign_85">
                                           <Assign.To>
                                             <OutArgument x:TypeArguments="s:String[]">[currentRefillOrder]</OutArgument>
                                           </Assign.To>
                                           <Assign.Value>
-                                            <InArgument x:TypeArguments="s:String[]">[currentRefillOrder.Append((CInt(stockDiscrepancy) * (CDbl(cheapestCost) - CDbl(itemPrice))).ToString).ToArray]</InArgument>
+                                            <InArgument x:TypeArguments="s:String[]">[currentRefillOrder.Append(cheapestItem.ToString).ToArray]</InArgument>
                                           </Assign.Value>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </Assign>
+                                        <Assign sap2010:Annotation.AnnotationText="Index 1: Preis des Produkts" sap:VirtualizedContainerService.HintSize="470,145" sap2010:WorkflowViewState.IdRef="Assign_86">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="s:String[]">[currentRefillOrder]</OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="s:String[]">[currentRefillOrder.Append(cheapestCost.ToString).ToArray]</InArgument>
+                                          </Assign.Value>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </Assign>
+                                        <Assign sap2010:Annotation.AnnotationText="Index 2: Link zum Produkt" sap:VirtualizedContainerService.HintSize="470,145" sap2010:WorkflowViewState.IdRef="Assign_87">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="s:String[]">[currentRefillOrder]</OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="s:String[]">[currentRefillOrder.Append(cheapestURL.ToString).ToArray]</InArgument>
+                                          </Assign.Value>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </Assign>
+                                        <If sap2010:Annotation.AnnotationText="Index 3 vom Array ist die Extrakosten für den Kunden, falls der Preis des Refill-Item teurer ist als der Preis von unserer Datenbank. &#xA;Falls der Preis des Refill-Items billiger ist, behalten wir das Geld für unser eigenen Profit." Condition="[CDbl(itemPrice) &lt; CDbl(cheapestCost)]" sap:VirtualizedContainerService.HintSize="470,540" sap2010:WorkflowViewState.IdRef="If_30">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <If.Then>
+                                            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="468,165" sap2010:WorkflowViewState.IdRef="Sequence_108">
+                                              <sap:WorkflowViewStateService.ViewState>
+                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                </scg:Dictionary>
+                                              </sap:WorkflowViewStateService.ViewState>
+                                              <Assign sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_88">
+                                                <Assign.To>
+                                                  <OutArgument x:TypeArguments="s:String[]">[currentRefillOrder]</OutArgument>
+                                                </Assign.To>
+                                                <Assign.Value>
+                                                  <InArgument x:TypeArguments="s:String[]">[currentRefillOrder.Append((CInt(stockDiscrepancy) * (CDbl(cheapestCost) - CDbl(itemPrice))).ToString).ToArray]</InArgument>
+                                                </Assign.Value>
+                                              </Assign>
+                                            </Sequence>
+                                          </If.Then>
+                                          <If.Else>
+                                            <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="468,165" sap2010:WorkflowViewState.IdRef="Sequence_109">
+                                              <sap:WorkflowViewStateService.ViewState>
+                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                </scg:Dictionary>
+                                              </sap:WorkflowViewStateService.ViewState>
+                                              <Assign sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_89">
+                                                <Assign.To>
+                                                  <OutArgument x:TypeArguments="s:String[]">[currentRefillOrder]</OutArgument>
+                                                </Assign.To>
+                                                <Assign.Value>
+                                                  <InArgument x:TypeArguments="s:String[]">[currentRefillOrder.Append("0.0").ToArray]</InArgument>
+                                                </Assign.Value>
+                                              </Assign>
+                                            </Sequence>
+                                          </If.Else>
+                                        </If>
+                                        <Assign sap2010:Annotation.AnnotationText="Index 4: Totale Kosten der Bestellung zum Nachstocken" sap:VirtualizedContainerService.HintSize="470,145" sap2010:WorkflowViewState.IdRef="Assign_90">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="s:String[]">[currentRefillOrder]</OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="s:String[]">[currentRefillOrder.Append(totalRefillCost.ToString).ToArray]</InArgument>
+                                          </Assign.Value>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </Assign>
+                                        <Assign sap2010:Annotation.AnnotationText="Hinzufügen des Arrays &quot;currentRefillOrder&quot; zur gesamten Bestellung &quot;refillOrder&quot;" sap:VirtualizedContainerService.HintSize="470,147" sap2010:WorkflowViewState.IdRef="Assign_91">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="s:String[][]">[refillOrder]</OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="s:String[][]">[refillOrder.Append(currentRefillorder.ToArray).ToArray]</InArgument>
+                                          </Assign.Value>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
                                         </Assign>
                                       </Sequence>
                                     </If.Then>
                                     <If.Else>
-                                      <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="468,166" sap2010:WorkflowViewState.IdRef="Sequence_109">
+                                      <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="504,89" sap2010:WorkflowViewState.IdRef="Sequence_110">
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                           </scg:Dictionary>
                                         </sap:WorkflowViewStateService.ViewState>
-                                        <Assign sap:VirtualizedContainerService.HintSize="434,106" sap2010:WorkflowViewState.IdRef="Assign_89">
-                                          <Assign.To>
-                                            <OutArgument x:TypeArguments="s:String[]">[currentRefillOrder]</OutArgument>
-                                          </Assign.To>
-                                          <Assign.Value>
-                                            <InArgument x:TypeArguments="s:String[]">[currentRefillOrder.Append("0.0").ToArray]</InArgument>
-                                          </Assign.Value>
-                                        </Assign>
                                       </Sequence>
                                     </If.Else>
                                   </If>
-                                  <Assign sap2010:Annotation.AnnotationText="Index 4: Totale Kosten der Bestellung zum Nachstocken" sap:VirtualizedContainerService.HintSize="470,146" sap2010:WorkflowViewState.IdRef="Assign_90">
-                                    <Assign.To>
-                                      <OutArgument x:TypeArguments="s:String[]">[currentRefillOrder]</OutArgument>
-                                    </Assign.To>
-                                    <Assign.Value>
-                                      <InArgument x:TypeArguments="s:String[]">[currentRefillOrder.Append(totalRefillCost.ToString).ToArray]</InArgument>
-                                    </Assign.Value>
-                                    <sap:WorkflowViewStateService.ViewState>
-                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                                      </scg:Dictionary>
-                                    </sap:WorkflowViewStateService.ViewState>
-                                  </Assign>
-                                  <Assign sap2010:Annotation.AnnotationText="Hinzufügen des Arrays &quot;currentRefillOrder&quot; zur gesamten Bestellung &quot;refillOrder&quot;" sap:VirtualizedContainerService.HintSize="470,150" sap2010:WorkflowViewState.IdRef="Assign_91">
-                                    <Assign.To>
-                                      <OutArgument x:TypeArguments="s:String[][]">[refillOrder]</OutArgument>
-                                    </Assign.To>
-                                    <Assign.Value>
-                                      <InArgument x:TypeArguments="s:String[][]">[refillOrder.Append(currentRefillorder.ToArray).ToArray]</InArgument>
-                                    </Assign.Value>
-                                    <sap:WorkflowViewStateService.ViewState>
-                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                                      </scg:Dictionary>
-                                    </sap:WorkflowViewStateService.ViewState>
-                                  </Assign>
                                 </Sequence>
-                              </If.Then>
-                              <If.Else>
-                                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="504,90" sap2010:WorkflowViewState.IdRef="Sequence_110">
-                                  <sap:WorkflowViewStateService.ViewState>
-                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                    </scg:Dictionary>
-                                  </sap:WorkflowViewStateService.ViewState>
-                                </Sequence>
-                              </If.Else>
-                            </If>
-                          </Sequence>
-                        </ActivityAction>
-                      </uix:NApplicationCard.Body>
-                      <uix:NApplicationCard.TargetApp>
-                        <uix:TargetApp Area="-8, -8, 1936, 1048" BrowserType="Chrome" ContentHash="CgTpu6FRDUS8U4KnbFgVRw" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAbxSURBVFhHpZZtTFvnFcf9pWuypg3tmjVrGmLeEoMBG2PaJBDb2CkvyQJpvlXtFqRpmrSXT5s67a3pl0nTptXkhdAklEsCbZdG3VsrVe3AhhBCs3ZDi5ZAo21OA5hAOztNmrXhXj9n//M8j415SUe7I/30P+fh+vzPufcasC03YgF3zkzQ0zITrDLAyPshb3ImVEXTQS/NBDn3RmeClcZ0qHIvX6s/9v/HVIPbfjVU1com2kxcra2k6VovqBQM14sIVBpTAbddt/nsoTb2htlUGgWUWcYQ9dWAR0wFOPcgV8r1VMCj8AOfZ59uufzgyWES00a6sUfm8ww0cTZiuPZViLi/Qp1xrohNbV7m3ZiurXChUSzbIIO/QjDKUBlpE4r73BmdhE5ucys4V/X/HoI3h1EsvYFSjTaa9Kmm8W3aSDXPMJGmxkWTNS4BBaoer3ZhCMfSQ/Azh1FMGWU1z5ipxnIA1hq3kDUbaENlJHMxLmul49XljFDqii35LZnwucMZE4XI3khvo41Uzg1lzc1l7aIrOGO0KV3ZupAycWVLWVjbqnC/tNve/h3/nAmboqk2I7mNNpn57jfoxss9ZMYnKR3i5rskZl4la2QXWecqGcGaYn3LQ5JzHpx5BM5kTcNZ70PlS3uMbUYzjYUq1Fb6dknFxDKvr6YbJ3u0JVE8Kah/bBaYdGkqpU8xzNSLZL3jJ/OtChgxbgzhxjDQYbeqoajVXXAbu3M8LzxGzL4fBjO3io1Z39tSRuN1W+nWpTFp8JeYSd8yPqKqZ65R1T4N8qbwdYqOzsprxM0xst6ugZmLDZUOc85aDi3HEOVJGsG74H5hd4u7ZzdVANb+Jq80ZfCsBOv133TLxkein5AXhhmezso1R3ENh4h3K7PhMk1pljJOMXumpMXm7m42ALm6m4S7p1k8+Ys6ury5lN7b7BTMxGP1siFvV/l0UuLROse1eefv4C5xpC7sFdZZJ5lnS8hagtRwiWFzdTdHXScwwIkmTTO9useLIZwUe8RJN177nWy289kPqeJnyTlglNF0rutvdt6QnxFTJ4R5thhm2TgwlINS0NRQ8Yit/HhTsvz4LkpT1rWLth9spL/7yij2cIm4dWmUxuIWudF8MYnbkKTJJF7MTyZguBGGmiEJMSZInS1K2MqMr8JUImSu659/u5piVcWCN4lcnCXXTxNLA7P5dYLKoRH9QlpDRWSeKSSLQW4NaZV1gbCVdu6kUpiWGjuF1C6lj7Q30vkap2zSd/EWlaHpQtgoW7PP+zA0h3WmAEb5wjoDhgowTD7O5uABks7OHUKxk6BAqvjeUz5hxidoMpGi0p/8+zMxiscmProAkzwyB/Ogdgxhl7XKN3CdsJU8v+OvJR2NpNhBqGXuZH2+UQz2n5SbtHRcJycaO38MWD+Ful9dk59JTZ+CGRvlCnMwlyzJBrBecG4Oro/aHB0NRvGxRpqjQQ7gONYgOP/6a0/JZn/+1yyVwLwYKP1A5nP13HkvHhmH9fYWMk+vBw/B9CHBqnOyWE+vM2yOow0tIGPIyPpovQCsdPy8+ioe6rtJjh99QA6YSF0Izg/1/kdee228E4brYLYO2z6I/EGYK6y0Dqzba7MbgZziI/XJTUfqKRsH69E6wXi79ojR9/8hG//pwi0K/jJJm2CYzdeOfUjn/qlevInEu5QYLCFz4CuatTBdK9JqnX5A5hTNUX+WNz1X37rpuTraqJH5kTqRroHwGntE1/nfSgOOi5OWHIaZwEuaDr6m849bsN1aGD+QwWLt/7JUa2CNsPrXGNKcw9HeYN/Y/igxRVrTeRaisH27CPQ8Sa+MvkEX9R3hGL9+lYy/vUJP/P4H5O/wwWiNYkBr//0ytwbuFzIH2H7+f0ZFbaHWosPbKU1hG+ujxKaFhyWkNCT4ZxldwKk/FMHkS8pU6n3YVipZyFlTA/ct/k/ZHg7kFBwOxQraVOOCQyEqBKx8JpXP2ubX2Tze9TDM7hVm9F4YAlaAM605wormxLTl4sAQ9oK2YCzdMP9gkApA/qGgkHCu66XOL7+JZxxdjQHuAathuBqGUNSa2KJbvzB4iPwDtTHZ9EAt5R2sFQznafJY8XNWmR8I0ve7y8mM3I1N71EKrOgqmK4SnM9G7ob5ik83TwcPkbe/NgbIfiAg8vYHpMochvb9Kk9T076VLr+B5xxZxabQu+ZhRe6Kfbxc8+zAIM/YW2F+W/wYxi86Xs4ns28ljL4oMSMrBNdmBPStDGe+758n+G7khv3GhrCfNrT6Re6zPsF5btgn6+q2zTBZobmTzF4QuTNp9q5s/fj1z7H17QKD5Kz/9bYWDNCFAaLQJKCTp/A7PXJHItX7hZFU7wpjtu+OluVvbLP9F5lmWAkTeM7rAAAAAElFTkSuQmCC" InformativeScreenshot="e98c96878b60a806e90e1f9cf1705501.png" Reference="itrJpdWr7Ee3YZjVAIn54A/dkvnMsLGak6kIa4jJ61TNw" Selector="&lt;html app='chrome.exe' title='Neuer Tab' /&gt;" Title="Neuer Tab" Url="chrome://newtab/" Version="V1" />
-                      </uix:NApplicationCard.TargetApp>
-                    </uix:NApplicationCard>
-                  </Sequence>
+                              </ActivityAction>
+                            </uix:NApplicationCard.Body>
+                            <uix:NApplicationCard.TargetApp>
+                              <uix:TargetApp Area="-8, -8, 1936, 1048" BrowserType="Chrome" ContentHash="CgTpu6FRDUS8U4KnbFgVRw" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAbxSURBVFhHpZZtTFvnFcf9pWuypg3tmjVrGmLeEoMBG2PaJBDb2CkvyQJpvlXtFqRpmrSXT5s67a3pl0nTptXkhdAklEsCbZdG3VsrVe3AhhBCs3ZDi5ZAo21OA5hAOztNmrXhXj9n//M8j415SUe7I/30P+fh+vzPufcasC03YgF3zkzQ0zITrDLAyPshb3ImVEXTQS/NBDn3RmeClcZ0qHIvX6s/9v/HVIPbfjVU1com2kxcra2k6VovqBQM14sIVBpTAbddt/nsoTb2htlUGgWUWcYQ9dWAR0wFOPcgV8r1VMCj8AOfZ59uufzgyWES00a6sUfm8ww0cTZiuPZViLi/Qp1xrohNbV7m3ZiurXChUSzbIIO/QjDKUBlpE4r73BmdhE5ucys4V/X/HoI3h1EsvYFSjTaa9Kmm8W3aSDXPMJGmxkWTNS4BBaoer3ZhCMfSQ/Azh1FMGWU1z5ipxnIA1hq3kDUbaENlJHMxLmul49XljFDqii35LZnwucMZE4XI3khvo41Uzg1lzc1l7aIrOGO0KV3ZupAycWVLWVjbqnC/tNve/h3/nAmboqk2I7mNNpn57jfoxss9ZMYnKR3i5rskZl4la2QXWecqGcGaYn3LQ5JzHpx5BM5kTcNZ70PlS3uMbUYzjYUq1Fb6dknFxDKvr6YbJ3u0JVE8Kah/bBaYdGkqpU8xzNSLZL3jJ/OtChgxbgzhxjDQYbeqoajVXXAbu3M8LzxGzL4fBjO3io1Z39tSRuN1W+nWpTFp8JeYSd8yPqKqZ65R1T4N8qbwdYqOzsprxM0xst6ugZmLDZUOc85aDi3HEOVJGsG74H5hd4u7ZzdVANb+Jq80ZfCsBOv133TLxkein5AXhhmezso1R3ENh4h3K7PhMk1pljJOMXumpMXm7m42ALm6m4S7p1k8+Ys6ury5lN7b7BTMxGP1siFvV/l0UuLROse1eefv4C5xpC7sFdZZJ5lnS8hagtRwiWFzdTdHXScwwIkmTTO9useLIZwUe8RJN177nWy289kPqeJnyTlglNF0rutvdt6QnxFTJ4R5thhm2TgwlINS0NRQ8Yit/HhTsvz4LkpT1rWLth9spL/7yij2cIm4dWmUxuIWudF8MYnbkKTJJF7MTyZguBGGmiEJMSZInS1K2MqMr8JUImSu659/u5piVcWCN4lcnCXXTxNLA7P5dYLKoRH9QlpDRWSeKSSLQW4NaZV1gbCVdu6kUpiWGjuF1C6lj7Q30vkap2zSd/EWlaHpQtgoW7PP+zA0h3WmAEb5wjoDhgowTD7O5uABks7OHUKxk6BAqvjeUz5hxidoMpGi0p/8+zMxiscmProAkzwyB/Ogdgxhl7XKN3CdsJU8v+OvJR2NpNhBqGXuZH2+UQz2n5SbtHRcJycaO38MWD+Ful9dk59JTZ+CGRvlCnMwlyzJBrBecG4Oro/aHB0NRvGxRpqjQQ7gONYgOP/6a0/JZn/+1yyVwLwYKP1A5nP13HkvHhmH9fYWMk+vBw/B9CHBqnOyWE+vM2yOow0tIGPIyPpovQCsdPy8+ioe6rtJjh99QA6YSF0Izg/1/kdee228E4brYLYO2z6I/EGYK6y0Dqzba7MbgZziI/XJTUfqKRsH69E6wXi79ojR9/8hG//pwi0K/jJJm2CYzdeOfUjn/qlevInEu5QYLCFz4CuatTBdK9JqnX5A5hTNUX+WNz1X37rpuTraqJH5kTqRroHwGntE1/nfSgOOi5OWHIaZwEuaDr6m849bsN1aGD+QwWLt/7JUa2CNsPrXGNKcw9HeYN/Y/igxRVrTeRaisH27CPQ8Sa+MvkEX9R3hGL9+lYy/vUJP/P4H5O/wwWiNYkBr//0ytwbuFzIH2H7+f0ZFbaHWosPbKU1hG+ujxKaFhyWkNCT4ZxldwKk/FMHkS8pU6n3YVipZyFlTA/ct/k/ZHg7kFBwOxQraVOOCQyEqBKx8JpXP2ubX2Tze9TDM7hVm9F4YAlaAM605wormxLTl4sAQ9oK2YCzdMP9gkApA/qGgkHCu66XOL7+JZxxdjQHuAathuBqGUNSa2KJbvzB4iPwDtTHZ9EAt5R2sFQznafJY8XNWmR8I0ve7y8mM3I1N71EKrOgqmK4SnM9G7ob5ik83TwcPkbe/NgbIfiAg8vYHpMochvb9Kk9T076VLr+B5xxZxabQu+ZhRe6Kfbxc8+zAIM/YW2F+W/wYxi86Xs4ns28ljL4oMSMrBNdmBPStDGe+758n+G7khv3GhrCfNrT6Re6zPsF5btgn6+q2zTBZobmTzF4QuTNp9q5s/fj1z7H17QKD5Kz/9bYWDNCFAaLQJKCTp/A7PXJHItX7hZFU7wpjtu+OluVvbLP9F5lmWAkTeM7rAAAAAElFTkSuQmCC" InformativeScreenshot="e98c96878b60a806e90e1f9cf1705501.png" Reference="itrJpdWr7Ee3YZjVAIn54A/dkvnMsLGak6kIa4jJ61TNw" Selector="&lt;html app='chrome.exe' title='Neuer Tab' /&gt;" Title="Neuer Tab" Url="chrome://newtab/" Version="V1" />
+                            </uix:NApplicationCard.TargetApp>
+                          </uix:NApplicationCard>
+                        </Sequence>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence sap2010:Annotation.AnnotationText="Wir haben keine Bestellung nötig" DisplayName="Else" sap:VirtualizedContainerService.HintSize="712,483" sap2010:WorkflowViewState.IdRef="Sequence_111">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="x:String" Name="updateResult" />
+                        </Sequence.Variables>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Assign sap:VirtualizedContainerService.HintSize="678,114" sap2010:WorkflowViewState.IdRef="Assign_98">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Int32">[newStockCount]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Int32">[itemCount - orderAmount]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <ws:ExecuteNonQuery DatabasePath="{x:Null}" Connection="[database]" DisplayName="Execute non query" sap:VirtualizedContainerService.HintSize="678,165" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_2" SQLCommand="[&quot;UPDATE 'Item Stock' SET Count = '&quot; + newStockCount.ToString + &quot;' WHERE Name = '&quot; + itemName + &quot;'&quot;]" />
+                        <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="678,113" sap2010:WorkflowViewState.IdRef="WriteLine_42" Text="No refilling of stock needed! Item count is greather than order amount." />
+                      </Sequence>
+                    </If.Else>
+                  </If>
                 </Sequence>
-              </If.Then>
-              <If.Else>
-                <Sequence sap2010:Annotation.AnnotationText="Wir haben keine Bestellung nötig" DisplayName="Else" sap:VirtualizedContainerService.HintSize="712,487" sap2010:WorkflowViewState.IdRef="Sequence_111">
-                  <Sequence.Variables>
-                    <Variable x:TypeArguments="x:String" Name="updateResult" />
-                  </Sequence.Variables>
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <Assign sap:VirtualizedContainerService.HintSize="678,115" sap2010:WorkflowViewState.IdRef="Assign_98">
-                    <Assign.To>
-                      <OutArgument x:TypeArguments="x:Int32">[newStockCount]</OutArgument>
-                    </Assign.To>
-                    <Assign.Value>
-                      <InArgument x:TypeArguments="x:Int32">[itemCount - orderAmount]</InArgument>
-                    </Assign.Value>
-                  </Assign>
-                  <ws:ExecuteNonQuery DatabasePath="{x:Null}" Connection="[database]" DisplayName="Execute non query" sap:VirtualizedContainerService.HintSize="678,167" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_2" SQLCommand="[&quot;UPDATE 'Item Stock' SET Count = '&quot; + newStockCount.ToString + &quot;' WHERE Name = '&quot; + itemName + &quot;'&quot;]" />
-                  <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="678,114" sap2010:WorkflowViewState.IdRef="WriteLine_42" Text="No refilling of stock needed! Item count is greather than order amount." />
-                </Sequence>
-              </If.Else>
-            </If>
+              </ActivityAction>
+            </ui:ForEach.Body>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:ForEach>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <ws:CloseConnection Connection="[database]" DisplayName="Close connection" sap:VirtualizedContainerService.HintSize="784,57" sap2010:WorkflowViewState.IdRef="CloseConnection_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ws:CloseConnection>
+    <Sequence sap:VirtualizedContainerService.HintSize="784,2920" sap2010:WorkflowViewState.IdRef="Sequence_117">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Assign DisplayName="INPUT Create Order ID" sap:VirtualizedContainerService.HintSize="486,114" sap2010:WorkflowViewState.IdRef="Assign_101">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[orderid]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">["123456"]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <ui:BuildDataTable DataTable="[dataTable]" DisplayName="INPUT Build Data Table" sap:VirtualizedContainerService.HintSize="486,92" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xD;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xD;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xD;&#xA;      &lt;xs:complexType&gt;&#xD;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xD;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xD;&#xA;            &lt;xs:complexType&gt;&#xD;&#xA;              &lt;xs:sequence&gt;&#xD;&#xA;                &lt;xs:element name=&quot;product&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;orderCount&quot; msdata:Caption=&quot;&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;cost&quot; msdata:Caption=&quot;&quot; type=&quot;xs:decimal&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;              &lt;/xs:sequence&gt;&#xD;&#xA;            &lt;/xs:complexType&gt;&#xD;&#xA;          &lt;/xs:element&gt;&#xD;&#xA;        &lt;/xs:choice&gt;&#xD;&#xA;      &lt;/xs:complexType&gt;&#xD;&#xA;    &lt;/xs:element&gt;&#xD;&#xA;  &lt;/xs:schema&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;product&gt;Soccer Ball&lt;/product&gt;&#xD;&#xA;    &lt;orderCount&gt;2&lt;/orderCount&gt;&#xD;&#xA;    &lt;cost&gt;10.99&lt;/cost&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;product&gt;Tablet&lt;/product&gt;&#xD;&#xA;    &lt;orderCount&gt;1&lt;/orderCount&gt;&#xD;&#xA;    &lt;cost&gt;179.99&lt;/cost&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;product&gt;Pencil&lt;/product&gt;&#xD;&#xA;    &lt;orderCount&gt;10&lt;/orderCount&gt;&#xD;&#xA;    &lt;cost&gt;0.49&lt;/cost&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;&lt;/NewDataSet&gt;" />
+      <ui:OutputDataTable DataTable="[dataTable]" DisplayName="Output Data Table as Text" sap:VirtualizedContainerService.HintSize="486,112" sap2010:WorkflowViewState.IdRef="OutputDataTable_1" Text="[outputText]" />
+      <Assign DisplayName="Calculate Total Price" sap:VirtualizedContainerService.HintSize="486,114" sap2010:WorkflowViewState.IdRef="Assign_102">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[totalprice]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[dataTable.AsEnumerable().Sum(Function(row) row.Field(Of Integer)("orderCount") * row.Field(Of Decimal)("cost")).ToString()]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="486,114" sap2010:WorkflowViewState.IdRef="Assign_112">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[messageJSON]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">["{" &amp; """order_id"":" &amp; orderid &amp; ",""items"":" &amp; Newtonsoft.Json.JsonConvert.SerializeObject(dataTable) &amp; ",""total_cost"":" &amp; totalprice &amp; "}"]</InArgument>
+        </Assign.Value>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </Assign>
+      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="486,122" sap2010:WorkflowViewState.IdRef="WriteLine_51" Text="[dataTableJson]" />
+      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="486,122" sap2010:WorkflowViewState.IdRef="WriteLine_52" Text="[outputText &amp;&quot;Total Price: &quot; &amp; totalprice]" />
+      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="486,122" sap2010:WorkflowViewState.IdRef="WriteLine_53" Text="[messageJSON]" />
+      <Assign sap:VirtualizedContainerService.HintSize="486,114" sap2010:WorkflowViewState.IdRef="Assign_104">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[sgSender]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">bpa.hu.ws2425@gmail.com</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="486,114" sap2010:WorkflowViewState.IdRef="Assign_105">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[sgReceiver]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[email.ToString]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="486,114" sap2010:WorkflowViewState.IdRef="Assign_106">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[sgSubject]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">Nozama Invoice</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="486,114" sap2010:WorkflowViewState.IdRef="Assign_109">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[sgTemplateId]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">d-a5f0ec0a68914d099de16c14c86689c0</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="486,115" sap2010:WorkflowViewState.IdRef="Assign_107">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[sgContent]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String" xml:space="preserve">["{" &amp;
+	"""from"":{""email"":" &amp; """" &amp;sgSender &amp; """" &amp; "}," &amp;
+	"""personalizations"":[{" &amp;
+		"""to"":[" &amp;
+			"{""email"":" &amp; """" &amp;sgReceiver &amp; """" &amp; "}" &amp;
+		"]," &amp;	
+		"""dynamic_template_data"":" &amp;
+				messageJSON &amp;
+			"" &amp;
+	"}]," &amp;
+	"""template_id"":" &amp; """" &amp; sgTemplateId &amp; """" &amp;
+"}"]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="486,122" sap2010:WorkflowViewState.IdRef="WriteLine_54" Text="[sgContent]" />
+      <Assign sap:VirtualizedContainerService.HintSize="486,114" sap2010:WorkflowViewState.IdRef="Assign_110">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:Int32">[outCode]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:Int32">0</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="486,114" sap2010:WorkflowViewState.IdRef="Assign_111">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[outHeaders]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">
+            <Literal x:TypeArguments="x:String" Value="" />
+          </InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="486,114" sap2010:WorkflowViewState.IdRef="Assign_108">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[outBody]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">
+            <Literal x:TypeArguments="x:String" Value="" />
+          </InArgument>
+        </Assign.Value>
+      </Assign>
+      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="486,655" sap2010:WorkflowViewState.IdRef="CommentOut_11">
+        <ui:CommentOut.Body>
+          <Sequence DisplayName="Ignorierte Aktivitäten" sap:VirtualizedContainerService.HintSize="450,544" sap2010:WorkflowViewState.IdRef="Sequence_119">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <isactr:ConnectorHttpActivity Configuration="H4sIAAAAAAAACu1W32/aQAz+V6Z7nAK02ls0VaKQAhobWaHdw9SHa2LCleTuej+gWcT/Pt8lYetAG5Oqvaw8QOzY/uw7fzYVuWKQp3oguKGMgyJhRSZcWlPrSfi1Ip9oASQkBZiVSElAhkzLnJaN+mOrXpTSydooxjOUr+HRMgUpCY2yENRIU5FQwwRHw0uRlmQX7ONblR8Ej3gqBePmBcKvgKag9I9I4v4BEhf5SqiCGtSkLHHOVJXva5iAoZDZArhpNBcXHlpLwTWcCv1oQZUvAfwnoHsnHx7VEDTL0L6qA/Q9WH239XPjMGYpuPJsDvXba1h6j187oNXf0tx6UzKKFuRud+dyeRZyvhLbk0JO9Beh1stcbKMnqUBrX2F9vodw8Wy+QKf4xn0Po2m0iJzYXwzGPg1M5P+p9dSGRMOZNUe5/Q/JUafw2rWvXfv3nZIIT9pjqwA0NumS5hpOD+ymROMbK9gw2MZUIZJxVMBp2ay20DM+IDe4oJAqxkgd9npUsq4GnmaKpd1EFL3Nux4ajRsmoXvforti3/YsBKpAvZmPunHnrf+gfT9JQDp+USlzVqfYe9DoEBC3lZFdnabeAwtM/7NfLWG1w+cJ14byBJ4XcYu/Nf5596x7VoflSG6hPgC6EsskNauO2bKciU5bkk/NsA0zZQM/Avx/wBJ8MfPDoR0deB7tBWD5KO2PLRZeN5Og2jMYKKAGXOYDmqwAb0WsrWyHXbXXXyqx1aAmBopGHytW4PDBnN3kwlkW02RNM/i5vnMs8ff5HcklIFPKM4uh3JTz/QVP5jIXydoj7b4DX27OviUJAAA=" ConnectionId="4df31011-db6e-4ca0-9398-9609d6ee22fb" DisplayName="HTTP Request" sap:VirtualizedContainerService.HintSize="416,484" sap2010:WorkflowViewState.IdRef="ConnectorHttpActivity_1" UiPathActivityTypeId="4c4d8235-6413-3e66-8741-4c96806c8122">
+              <isactr:ConnectorHttpActivity.FieldObjects>
+                <isactr:FieldObject Name="method" Type="FieldArgument">
+                  <isactr:FieldObject.Value>
+                    <InArgument x:TypeArguments="x:String">GET</InArgument>
+                  </isactr:FieldObject.Value>
+                </isactr:FieldObject>
+                <isactr:FieldObject Name="url" Type="FieldArgument">
+                  <isactr:FieldObject.Value>
+                    <InArgument x:TypeArguments="x:String">/mail/send</InArgument>
+                  </isactr:FieldObject.Value>
+                </isactr:FieldObject>
+                <isactr:FieldObject Name="headers" Type="FieldArgument" />
+                <isactr:FieldObject Name="query" Type="FieldArgument" />
+                <isactr:FieldObject Name="body" Type="FieldArgument" />
+                <isactr:FieldObject Name="out_headers" Type="FieldArgument">
+                  <isactr:FieldObject.Value>
+                    <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" />
+                  </isactr:FieldObject.Value>
+                </isactr:FieldObject>
+                <isactr:FieldObject Name="out_body" Type="FieldArgument">
+                  <isactr:FieldObject.Value>
+                    <OutArgument x:TypeArguments="x:String" />
+                  </isactr:FieldObject.Value>
+                </isactr:FieldObject>
+                <isactr:FieldObject Name="out_code" Type="FieldArgument">
+                  <isactr:FieldObject.Value>
+                    <OutArgument x:TypeArguments="x:Int32" />
+                  </isactr:FieldObject.Value>
+                </isactr:FieldObject>
+              </isactr:ConnectorHttpActivity.FieldObjects>
+            </isactr:ConnectorHttpActivity>
           </Sequence>
-        </ActivityAction>
-      </ui:ForEach.Body>
-    </ui:ForEach>
-    <ws:CloseConnection Connection="[database]" DisplayName="Close connection" sap:VirtualizedContainerService.HintSize="750,104" sap2010:WorkflowViewState.IdRef="CloseConnection_1" />
+        </ui:CommentOut.Body>
+      </ui:CommentOut>
+      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="486,122" sap2010:WorkflowViewState.IdRef="WriteLine_55" Text="[outCode.toString()]" />
+      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="486,113" sap2010:WorkflowViewState.IdRef="WriteLine_56" Text="[outBody]" />
+    </Sequence>
   </Sequence>
 </Activity>

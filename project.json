@@ -11,8 +11,11 @@
     "KazAgroCamunda.Api.Client": "[2.5.5]",
     "Komsa.Camunda.Api.Client": "[2.8.0]",
     "UiPath.Database.Activities": "[1.9.0]",
+    "UiPath.DocumentUnderstanding.Activities": "[2.12.1]",
     "UiPath.Excel.Activities": "[2.24.4]",
     "UiPath.GSuite.Activities": "[2.8.22]",
+    "UiPath.IntegrationService.Activities": "[1.11.0]",
+    "UiPath.IntelligentOCR.Activities": "[6.22.1]",
     "UiPath.System.Activities": "[24.10.7]",
     "UiPath.UIAutomation.Activities": "[24.10.8]",
     "Witrics.SQLite.Activities": "[2.0.2]"
